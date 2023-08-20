@@ -1,9 +1,6 @@
-package unit;
+package junit;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import parser.JsonParser;
@@ -14,9 +11,12 @@ import shop.VirtualItem;
 
 import java.io.File;
 
+import static constants.TestConstants.RESOURCE_PATH;
+
 public class JsonParserTest {
     private static Cart expectedCart;
     private JsonParser parser = new JsonParser();
+    private static File json;
 
     @BeforeAll
     static void setUp() {
@@ -43,7 +43,7 @@ public class JsonParserTest {
         parser.writeToFile(expectedCart);
 
         //Newly created JSON file
-        File json = new File("src/main/resources/" + expectedCart.getCartName() + ".json");
+        json = new File(String.format("%s%s.json", RESOURCE_PATH, expectedCart.getCartName()));
 
         //Read the cart from file
         Cart actualCart = parser.readFromFile(json);
@@ -54,13 +54,23 @@ public class JsonParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"src/main/resources/test1.json", "src/main/resources/test2.json", "src/main/resources/test3.json",
-            "src/main/resources/test4.json","src/main/resources/test5.json"})
+    @ValueSource(strings = {RESOURCE_PATH + "test1.json", RESOURCE_PATH + "test2.json", RESOURCE_PATH + "test3.json",
+            RESOURCE_PATH + "test4.json", RESOURCE_PATH + "test5.json"})
     @Disabled
     void testReadFromFileWithMissingFile(String uri) {
         File json = new File(uri);
 
         //Assert
         Assertions.assertThrows(NoSuchFileException.class, () -> parser.readFromFile(json));
+    }
+
+    @AfterAll
+    static void cleanUp() {
+        if (json.exists()) {
+            boolean deleted = json.delete();
+            if (!deleted) {
+                System.out.println("Failed to delete the JSON file.");
+            }
+        }
     }
 }

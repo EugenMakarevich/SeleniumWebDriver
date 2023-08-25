@@ -1,8 +1,7 @@
 package testng;
 
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.testng.Assert;
+import org.testng.annotations.*;
 import parser.JsonParser;
 import parser.NoSuchFileException;
 import shop.Cart;
@@ -18,7 +17,7 @@ public class JsonParserTest {
     private JsonParser parser = new JsonParser();
     private static File json;
 
-    @BeforeAll
+    @BeforeClass
     static void setUp() {
         //Create new cart
         expectedCart = new Cart("TestCart");
@@ -49,22 +48,31 @@ public class JsonParserTest {
         Cart actualCart = parser.readFromFile(json);
 
         //Assert
-        Assertions.assertNotNull(actualCart);
-        Assertions.assertEquals(expectedCart.getCartName(), actualCart.getCartName());
+        Assert.assertNotNull(actualCart);
+        Assert.assertEquals(expectedCart.getCartName(), actualCart.getCartName());
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {RESOURCE_PATH + "test1.json", RESOURCE_PATH + "test2.json", RESOURCE_PATH + "test3.json",
-            RESOURCE_PATH + "test4.json", RESOURCE_PATH + "test5.json"})
-    @Disabled
+    @DataProvider (name = "missingFiles")
+    public Object[][] missingFiles() {
+        return new Object[][] {
+                {RESOURCE_PATH + "test1.json"},
+                {RESOURCE_PATH + "test2.json"},
+                {RESOURCE_PATH + "test3.json"},
+                {RESOURCE_PATH + "test4.json"},
+                {RESOURCE_PATH + "test5.json"}
+        };
+    }
+
+    @Test(dataProvider = "missingFiles")
+    @Ignore
     void testReadFromFileWithMissingFile(String uri) {
         File json = new File(uri);
 
         //Assert
-        Assertions.assertThrows(NoSuchFileException.class, () -> parser.readFromFile(json));
+        Assert.assertThrows(NoSuchFileException.class, () -> parser.readFromFile(json));
     }
 
-    @AfterAll
+    @AfterClass
     static void cleanUp() {
         if (json.exists()) {
             boolean deleted = json.delete();

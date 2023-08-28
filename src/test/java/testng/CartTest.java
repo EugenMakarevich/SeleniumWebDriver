@@ -11,23 +11,23 @@ import shop.VirtualItem;
 import static constants.TestConstants.TAX;
 
 public class CartTest {
-    private static Cart cart;
-    private static RealItem car;
-    private static VirtualItem disk;
+    private Cart cart;
+    private RealItem car;
+    private VirtualItem disk;
 
-    @BeforeClass
-    static void setUp() {
+    @BeforeClass(alwaysRun = true)
+    void setUp() {
         cart = new Cart("TestCart");
         car = new RealItem();
         disk = new VirtualItem();
     }
 
-    @Test
+    @Test(groups = "Smoke")
     void testCartName() {
         Assert.assertEquals("TestCart", cart.getCartName());
     }
 
-    @Test
+    @Test(groups = "Regression")
     void testTotalPriceCart() {
         //Set prices for the items
         car.setPrice(10000);
@@ -44,8 +44,8 @@ public class CartTest {
         Assert.assertEquals(expectedTotalPrice, cart.getTotalPrice());
     }
 
-    @AfterClass
-    static void cleanUp() {
+    @AfterClass(alwaysRun = true)
+    void tearDown() {
         cart = null;
     }
 }

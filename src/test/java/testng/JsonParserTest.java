@@ -13,12 +13,13 @@ import java.io.File;
 import static constants.TestConstants.RESOURCE_PATH;
 
 public class JsonParserTest {
-    private static Cart expectedCart;
-    private JsonParser parser = new JsonParser();
-    private static File json;
+    private Cart expectedCart;
+    private JsonParser parser;
+    private File json;
 
-    @BeforeClass
-    static void setUp() {
+    @BeforeClass(alwaysRun = true)
+    void setUp() {
+        parser = new JsonParser();
         //Create new cart
         expectedCart = new Cart("TestCart");
 
@@ -36,7 +37,7 @@ public class JsonParserTest {
         expectedCart.addVirtualItem(disk);
     }
 
-    @Test
+    @Test(groups = {"Smoke", "Regression"})
     void testJsonParser() {
         //Write cart to the json file
         parser.writeToFile(expectedCart);
@@ -52,7 +53,7 @@ public class JsonParserTest {
         Assert.assertEquals(expectedCart.getCartName(), actualCart.getCartName());
     }
 
-    @DataProvider (name = "missingFiles")
+    @DataProvider(name = "missingFiles")
     public Object[][] missingFiles() {
         return new Object[][] {
                 {RESOURCE_PATH + "test1.json"},
@@ -63,7 +64,7 @@ public class JsonParserTest {
         };
     }
 
-    @Test(dataProvider = "missingFiles")
+    @Test(dataProvider = "missingFiles", groups = "Regression")
     @Ignore
     void testReadFromFileWithMissingFile(String uri) {
         File json = new File(uri);
@@ -72,8 +73,8 @@ public class JsonParserTest {
         Assert.assertThrows(NoSuchFileException.class, () -> parser.readFromFile(json));
     }
 
-    @AfterClass
-    static void cleanUp() {
+    @AfterClass(alwaysRun = true)
+    void tearDown() {
         if (json.exists()) {
             boolean deleted = json.delete();
             if (!deleted) {

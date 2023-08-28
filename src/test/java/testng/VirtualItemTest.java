@@ -8,14 +8,14 @@ import shop.VirtualItem;
 
 
 public class VirtualItemTest {
-    private static VirtualItem virtualItem;
+    private VirtualItem virtualItem;
 
-    @BeforeClass
-    static void setUp() {
+    @BeforeClass(alwaysRun = true)
+    void setUp() {
         virtualItem = new VirtualItem();
     }
 
-    @Test
+    @Test(groups = "Smoke")
     void testVirtualItem() {
         double sizeOnDisk = 500.25;
         virtualItem.setSizeOnDisk(sizeOnDisk);
@@ -26,8 +26,8 @@ public class VirtualItemTest {
         softAssert.assertAll();
     }
 
-    @AfterClass
-    static void cleanUp() {
+    @AfterClass(alwaysRun = true)
+    void tearDown() {
         virtualItem = null;
     }
 }

@@ -7,13 +7,13 @@ import org.testng.asserts.SoftAssert;
 import shop.RealItem;
 
 public class RealItemTest {
-    private static RealItem realItem;
-    @BeforeClass
-    static void setUp() {
+    private RealItem realItem;
+    @BeforeClass(alwaysRun = true)
+    void setUp() {
         realItem = new RealItem();
     }
 
-    @Test
+    @Test(groups = "Smoke")
     void testRealItem() {
         double weight = 70.5;
         realItem.setWeight(weight);
@@ -24,8 +24,8 @@ public class RealItemTest {
         softAssert.assertAll();
     }
 
-    @AfterClass
-    static void cleanUp() {
+    @AfterClass(alwaysRun = true)
+    void tearDown() {
         realItem = null;
     }
 }

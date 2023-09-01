@@ -55,7 +55,7 @@ public class JsonParserTest {
 
     @DataProvider(name = "missingFiles")
     public Object[][] missingFiles() {
-        return new Object[][] {
+        return new Object[][]{
                 {RESOURCE_PATH + "test1.json"},
                 {RESOURCE_PATH + "test2.json"},
                 {RESOURCE_PATH + "test3.json"},
@@ -67,14 +67,14 @@ public class JsonParserTest {
     @Test(dataProvider = "missingFiles", groups = "Regression")
     @Ignore
     void testReadFromFileWithMissingFile(String uri) {
-        File json = new File(uri);
+        json = new File(uri);
 
         //Assert
         Assert.assertThrows(NoSuchFileException.class, () -> parser.readFromFile(json));
     }
 
     @AfterClass(alwaysRun = true)
-    void tearDown() {
+    void cleanUp() {
         if (json.exists()) {
             boolean deleted = json.delete();
             if (!deleted) {

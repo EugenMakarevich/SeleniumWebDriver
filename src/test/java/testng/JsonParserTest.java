@@ -55,7 +55,7 @@ public class JsonParserTest {
 
     @DataProvider(name = "missingFiles")
     public Object[][] missingFiles() {
-        return new Object[][]{
+        return new Object[][] {
                 {RESOURCE_PATH + "test1.json"},
                 {RESOURCE_PATH + "test2.json"},
                 {RESOURCE_PATH + "test3.json"},
@@ -74,7 +74,7 @@ public class JsonParserTest {
     }
 
     @AfterClass(alwaysRun = true)
-    void cleanUp() {
+    void tearDown() {
         if (json.exists()) {
             boolean deleted = json.delete();
             if (!deleted) {

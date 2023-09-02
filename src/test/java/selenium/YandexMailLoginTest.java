@@ -1,5 +1,6 @@
 package selenium;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,10 +11,9 @@ import org.testng.annotations.Test;
 import utils.ConfigUtils;
 import utils.WebDriverUtils;
 
-import java.time.Duration;
-
 import static constants.TimeOutConstants.SHORT_TIMEOUT;
 
+@Slf4j
 public class YandexMailLoginTest {
     WebDriver driver;
     WebDriverWait wait;
@@ -29,25 +29,25 @@ public class YandexMailLoginTest {
     @BeforeClass(alwaysRun = true)
     void setUp() {
         driver = WebDriverUtils.setWebDriver();
-        wait = new WebDriverWait(driver, Duration.ofMillis(SHORT_TIMEOUT));
+        wait = new WebDriverWait(driver, SHORT_TIMEOUT);
     }
 
     @Test
     void TestYandexMailLogin() {
-        //Navigate to the login main page
+        log.info("Navigate to the login main page");
         driver.get(YANDEX_MAIL_URL);
         driver.findElement(LOGIN_BUTTON_MAIN_PAGE).click();
 
-        //Enter username and click login button
+        log.info("Enter username and click login button");
         driver.findElement(EMAIL_FIELD).sendKeys(YANDEX_MAIL_USERNAME);
         driver.findElement(LOGIN_BUTTON_AUTHORIZATION_PAGE).click();
 
-        //Enter password and click login button
+        log.info("Enter password and click login button");
         wait.until(ExpectedConditions.visibilityOfElementLocated(PASSWORD_FIELD));
         driver.findElement(PASSWORD_FIELD).sendKeys(YANDEX_MAIL_PASSWORD);
         driver.findElement(LOGIN_BUTTON_AUTHORIZATION_PAGE).click();
 
-        //Assert the user is logged into personal account
+        log.info("Assert the user is logged into personal account");
         wait.until(ExpectedConditions.titleIs(YANDEX_MAIL_TITLE));
     }
 

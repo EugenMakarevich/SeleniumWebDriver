@@ -7,12 +7,12 @@ import org.openqa.selenium.By;
  This is not applicable to the project
  */
 public class ByConstants {
-    public static final By BY_CLASSNAME = By.className("information");
-    public static final By BY_CSS_SELECTOR = By.cssSelector("#fname");
-    public static final By BY_ID = By.id("id");
-    public static final By BY_NAME = By.name("newsletter");
-    public static final By BY_LINK_TEXT = By.linkText("Selenium Official Page");
-    public static final By BY_PARTIAL_LINK_TEXT = By.partialLinkText("Official Page");
-    public static final By BY_TAG_NAME = By.tagName("a");
-    public static final By BY_XPATH = By.xpath("//input[@value='f']");
+    public static final By CLASSNAME_SELECTOR = By.className("information");
+    public static final By CSS_SELECTOR = By.cssSelector("#fname");
+    public static final By ID_SELECTOR = By.id("id");
+    public static final By NAME_SELECTOR = By.name("newsletter");
+    public static final By LINK_TEXT_SELECTOR = By.linkText("Selenium Official Page");
+    public static final By PARTIAL_LINK_TEXT_SELECTOR = By.partialLinkText("Official Page");
+    public static final By TAG_NAME_SELECTOR = By.tagName("a");
+    public static final By XPATH_SELECTOR = By.xpath("//input[@value='f']");
 }

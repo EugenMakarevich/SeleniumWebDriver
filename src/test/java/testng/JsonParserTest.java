@@ -1,8 +1,7 @@
-package junit;
+package testng;
 
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.testng.Assert;
+import org.testng.annotations.*;
 import parser.JsonParser;
 import parser.NoSuchFileException;
 import shop.Cart;
@@ -14,12 +13,13 @@ import java.io.File;
 import static constants.TestConstants.RESOURCE_PATH;
 
 public class JsonParserTest {
-    private static Cart expectedCart;
-    private JsonParser parser = new JsonParser();
-    private static File json;
+    private Cart expectedCart;
+    private JsonParser parser;
+    private File json;
 
-    @BeforeAll
-    static void setUp() {
+    @BeforeClass(alwaysRun = true)
+    void setUp() {
+        parser = new JsonParser();
         //Create new cart
         expectedCart = new Cart("TestCart");
 
@@ -37,7 +37,7 @@ public class JsonParserTest {
         expectedCart.addVirtualItem(disk);
     }
 
-    @Test
+    @Test(groups = {"Smoke", "Regression"})
     void testJsonParser() {
         //Write cart to the json file
         parser.writeToFile(expectedCart);
@@ -49,23 +49,32 @@ public class JsonParserTest {
         Cart actualCart = parser.readFromFile(json);
 
         //Assert
-        Assertions.assertNotNull(actualCart);
-        Assertions.assertEquals(expectedCart.getCartName(), actualCart.getCartName());
+        Assert.assertNotNull(actualCart);
+        Assert.assertEquals(expectedCart.getCartName(), actualCart.getCartName());
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {RESOURCE_PATH + "test1.json", RESOURCE_PATH + "test2.json", RESOURCE_PATH + "test3.json",
-            RESOURCE_PATH + "test4.json", RESOURCE_PATH + "test5.json"})
-    @Disabled
+    @DataProvider(name = "missingFiles")
+    public Object[][] missingFiles() {
+        return new Object[][] {
+                {RESOURCE_PATH + "test1.json"},
+                {RESOURCE_PATH + "test2.json"},
+                {RESOURCE_PATH + "test3.json"},
+                {RESOURCE_PATH + "test4.json"},
+                {RESOURCE_PATH + "test5.json"}
+        };
+    }
+
+    @Test(dataProvider = "missingFiles", groups = "Regression")
+    @Ignore
     void testReadFromFileWithMissingFile(String uri) {
-        File json = new File(uri);
+        json = new File(uri);
 
         //Assert
-        Assertions.assertThrows(NoSuchFileException.class, () -> parser.readFromFile(json));
+        Assert.assertThrows(NoSuchFileException.class, () -> parser.readFromFile(json));
     }
 
-    @AfterAll
-    static void cleanUp() {
+    @AfterClass(alwaysRun = true)
+    void tearDown() {
         if (json.exists()) {
             boolean deleted = json.delete();
             if (!deleted) {

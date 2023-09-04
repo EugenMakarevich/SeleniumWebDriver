@@ -1,9 +1,9 @@
-package junit;
+package testng;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import shop.Cart;
 import shop.RealItem;
 import shop.VirtualItem;
@@ -11,23 +11,23 @@ import shop.VirtualItem;
 import static constants.TestConstants.TAX;
 
 public class CartTest {
-    private static Cart cart;
-    private static RealItem car;
-    private static VirtualItem disk;
+    private Cart cart;
+    private RealItem car;
+    private VirtualItem disk;
 
-    @BeforeAll
-    static void setUp() {
+    @BeforeClass(alwaysRun = true)
+    void setUp() {
         cart = new Cart("TestCart");
         car = new RealItem();
         disk = new VirtualItem();
     }
 
-    @Test
+    @Test(groups = "Smoke")
     void testCartName() {
-        Assertions.assertEquals("TestCart", cart.getCartName());
+        Assert.assertEquals("TestCart", cart.getCartName());
     }
 
-    @Test
+    @Test(groups = "Regression")
     void testTotalPriceCart() {
         //Set prices for the items
         car.setPrice(10000);
@@ -41,14 +41,11 @@ public class CartTest {
         double expectedTotalPrice = car.getPrice() + car.getPrice()*TAX + disk.getPrice() + disk.getPrice()*TAX;
 
         //Assert
-        Assertions.assertEquals(expectedTotalPrice, cart.getTotalPrice());
+        Assert.assertEquals(expectedTotalPrice, cart.getTotalPrice());
     }
 
-    @AfterAll
-    static void cleanUp() {
-        //Delete items from the cart
-        cart.deleteRealItem(car);
-        cart.deleteVirtualItem(disk);
+    @AfterClass(alwaysRun = true)
+    void tearDown() {
         cart = null;
     }
 }

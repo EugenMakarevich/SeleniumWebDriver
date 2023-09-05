@@ -5,9 +5,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class WebDriverUtils {
-    private static WebDriver driver;
-
     public static WebDriver setWebDriver() {
+        WebDriver driver;
         switch (ConfigUtils.getProperty("driver.browser")) {
             case "chrome":
                 driver = new ChromeDriver();

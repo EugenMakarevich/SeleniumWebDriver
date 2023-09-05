@@ -1,32 +1,25 @@
 package selenium;
 
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import utils.ConfigUtils;
 import utils.WebDriverUtils;
 
+import static constants.ByConstants.*;
+import static constants.TestConstants.*;
 import static constants.TimeOutConstants.SHORT_TIMEOUT;
 
 @Slf4j
 public class YandexMailLoginTest {
-    WebDriver driver;
-    WebDriverWait wait;
-    private static final String YANDEX_MAIL_URL = ConfigUtils.getProperty("yandexmail.url");
-    private static final String YANDEX_MAIL_USERNAME = ConfigUtils.getProperty("yandexmail.username");
-    private static final String YANDEX_MAIL_PASSWORD = ConfigUtils.getProperty("yandexmail.password");
-    private static final By LOGIN_BUTTON_MAIN_PAGE = By.id("header-login-button");
-    private static final By EMAIL_FIELD = By.id("passp-field-login");
-    private static final By LOGIN_BUTTON_AUTHORIZATION_PAGE = By.id("passp:sign-in");
-    private static final By PASSWORD_FIELD = By.id("passp-field-passwd");
-    private static final String YANDEX_MAIL_TITLE = "Inbox — Yandex Mail";
+    private WebDriver driver;
+    private WebDriverWait wait;
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeClass
     void setUp() {
         driver = WebDriverUtils.setWebDriver();
         wait = new WebDriverWait(driver, SHORT_TIMEOUT);
@@ -48,11 +41,12 @@ public class YandexMailLoginTest {
         driver.findElement(LOGIN_BUTTON_AUTHORIZATION_PAGE).click();
 
         log.info("Assert the user is logged into personal account");
-        wait.until(ExpectedConditions.titleIs(YANDEX_MAIL_TITLE));
+        wait.until(ExpectedConditions.titleContains(YANDEX_MAIL_INBOX_TITLE));
+        Assert.assertTrue(driver.getTitle().contains(YANDEX_MAIL_INBOX_TITLE),"Unexpected page title");
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterClass
     void tearDown() {
-        driver.quit();
+        if (driver != null) driver.quit();
     }
 }

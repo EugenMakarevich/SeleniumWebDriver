@@ -12,5 +12,6 @@ public class TestConstants {
     public static final String CONFIG_PROPERTIES = "src/test/resources/config.properties";
     public static final String YANDEX_MAIL_INBOX_TITLE = "Inbox — Yandex Mail";
     public static final String MULTISELECT_TEST_URL = "https://demo.seleniumeasy.com/basic-select-dropdown-demo.html";
+    public static final String ALERTS_TEST_URL = "https://demo.seleniumeasy.com/javascript-alert-box-demo.html";
     public static final double TAX = 0.2;
 }

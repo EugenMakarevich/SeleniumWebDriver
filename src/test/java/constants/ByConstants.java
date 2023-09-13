@@ -19,4 +19,5 @@ public class ByConstants {
     public static final By EMAIL_FIELD = By.id("passp-field-login");
     public static final By LOGIN_BUTTON_AUTHORIZATION_PAGE = By.id("passp:sign-in");
     public static final By PASSWORD_FIELD = By.id("passp-field-passwd");
+    public static final By USER_ACCOUNT_NAME = By.cssSelector("a.user-account_left-name > span.user-account__name");
 }

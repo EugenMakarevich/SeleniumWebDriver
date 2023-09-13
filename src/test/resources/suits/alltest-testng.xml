@@ -4,6 +4,7 @@
     <test name="All tests">
         <packages>
             <package name="testng"/>
+            <package name="selenium"/>
         </packages>
     </test>
 </suite>

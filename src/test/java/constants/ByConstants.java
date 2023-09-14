@@ -32,5 +32,9 @@ public class ByConstants {
     //Alerts locators
     public static final By ALERT_BOX_BUTTON = By.xpath("//button[text()='Click me!']");
     public static final By CONFIRM_BOX_BUTTON = By.xpath("//button[contains(@class, 'btn-lg') and text()='Click me!']");
+    public static final By CONFIRM_BOX_RESULT = By.id("confirm-demo");
 
+    //Loading the data Dynamically locators
+    public static final By GET_NEW_USER_BUTTON = By.id("save");
+    public static final By USER_INFORMATION_BOX = By.id("loading");
 }

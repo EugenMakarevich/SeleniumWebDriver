@@ -1,75 +1,75 @@
 package selenium;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import testbase.TestBase;
 
-import static constants.ByConstants.ALERT_BOX_BUTTON;
-import static constants.ByConstants.CONFIRM_BOX_BUTTON;
+import static constants.ByConstants.*;
 import static constants.TestConstants.ALERTS_TEST_URL;
 
+@Slf4j
 public class AlertsTest extends TestBase {
-    @Test(priority = 1)
+    @Test
     public void testJavaScriptAlertBox() {
-        // Open the URL
+        log.info("Open the URL: {}", ALERTS_TEST_URL);
         driver().get(ALERTS_TEST_URL);
 
-        // Click the "Click me!" button for the JavaScript Alert Box
+        log.info("Click the 'Click me!' button for the JavaScript Alert Box");
         driver().findElement(ALERT_BOX_BUTTON).click();
 
-        // Switch to the alert
+        log.info("Switch to the alert");
         Alert alert = driver().switchTo().alert();
 
-        // Get the alert text
+        log.info("Get the alert text");
         String alertText = alert.getText();
 
-        // Verify the alert text
+        log.info("Verify the alert text is 'I am an alert box!'");
         Assert.assertEquals(alertText, "I am an alert box!");
 
-        // Close the alert
+        log.info("Close the alert");
         alert.accept();
     }
 
-    @Test(priority = 2)
+    @Test
     public void testJavaScriptConfirmBoxAccept() {
-        // Open the URL
+        log.info("Open the URL: {}", ALERTS_TEST_URL);
         driver().get(ALERTS_TEST_URL);
 
-        // Click the "Click for Confirm Box" button for the JavaScript Confirm Box
+        log.info("Click the 'Click me!' button for the JavaScript Confirm Box");
         driver().findElement(CONFIRM_BOX_BUTTON).click();
 
-        // Switch to the alert
+        log.info("Switch to the alert");
         Alert alert = driver().switchTo().alert();
 
-        // Accept the alert (Click OK)
+        log.info("Accept the alert (Click OK)");
         alert.accept();
 
-        // Verify the result text
-        WebElement resultElement = driver().findElement(By.id("confirm-demo"));
+        log.info("Verify the result text");
+        WebElement resultElement = driver().findElement(CONFIRM_BOX_RESULT);
         String resultText = resultElement.getText();
 
         Assert.assertEquals(resultText, "You pressed OK!");
     }
 
-    @Test(priority = 3)
+    @Test
     public void testJavaScriptConfirmBoxDismiss() {
-        // Open the URL
+        log.info("Open the URL: {}", ALERTS_TEST_URL);
         driver().get(ALERTS_TEST_URL);
 
-        // Click the "Click for Confirm Box" button for the JavaScript Confirm Box
+        log.info("Click the 'Click me!' button for the JavaScript Confirm Box");
         driver().findElement(CONFIRM_BOX_BUTTON).click();
 
-        // Switch to the alert
+        log.info("Switch to the alert");
         Alert alert = driver().switchTo().alert();
 
-        // Dismiss the alert (Click Cancel)
+        log.info("Dismiss the alert (Click Cancel)");
         alert.dismiss();
 
-        // Verify the result text
-        WebElement resultElement = driver().findElement(By.id("confirm-demo"));
+        log.info("Verify the result text");
+        WebElement resultElement = driver().findElement(CONFIRM_BOX_RESULT);
         String resultText = resultElement.getText();
 
         Assert.assertEquals(resultText, "You pressed Cancel!");

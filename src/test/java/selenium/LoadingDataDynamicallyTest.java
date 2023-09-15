@@ -1,6 +1,7 @@
 package selenium;
 
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -27,5 +28,9 @@ public class LoadingDataDynamicallyTest extends TestBase {
         log.info("Wait until the user's information appears");
         WebDriverWait wait = new WebDriverWait(driver(), MEDIUM_TIMEOUT, Duration.ofMillis(200));
         wait.until(ExpectedConditions.textToBePresentInElementLocated(USER_INFORMATION_BOX, "First Name"));
+
+        WebElement userInfoElement = driver().findElement(USER_INFORMATION_BOX);
+        String userInfo = userInfoElement.getText();
+        log.info("User Info: {}", userInfo);
     }
 }

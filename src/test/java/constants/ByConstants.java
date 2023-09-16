@@ -41,4 +41,10 @@ public class ByConstants {
     //Progress Bar Test locators
     public static final By DOWNLOAD_BUTTON = By.id("cricle-btn");
     public static final By PERCENT_TEXT = By.className("percenttext");
+
+    //Table Sort And Search Demo locators
+    public static final By SHOW_ENTRIES_DROPDOWN = By.name("example_length");
+    public static final By NEXT_PAGE_BUTTON = By.id("example_next");
+
+
 }

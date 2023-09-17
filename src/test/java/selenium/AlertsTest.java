@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import testbase.TestBase;
 
 import static constants.ByConstants.*;
-import static constants.TestConstants.ALERTS_TEST_URL;
+import static constants.TestConstants.*;
 
 @Slf4j
 public class AlertsTest extends TestBase {
@@ -26,8 +26,8 @@ public class AlertsTest extends TestBase {
         log.info("Get the alert text");
         String alertText = alert.getText();
 
-        log.info("Verify the alert text is 'I am an alert box!'");
-        Assert.assertEquals(alertText, "I am an alert box!");
+        log.info("Verify the alert text is '{}'", ALERT_TEXT);
+        Assert.assertEquals(alertText, ALERT_TEXT);
 
         log.info("Close the alert");
         alert.accept();
@@ -51,7 +51,7 @@ public class AlertsTest extends TestBase {
         WebElement resultElement = driver().findElement(CONFIRM_BOX_RESULT);
         String resultText = resultElement.getText();
 
-        Assert.assertEquals(resultText, "You pressed OK!");
+        Assert.assertEquals(resultText, OK_BUTTON_RESULT_TEXT);
     }
 
     @Test
@@ -72,6 +72,6 @@ public class AlertsTest extends TestBase {
         WebElement resultElement = driver().findElement(CONFIRM_BOX_RESULT);
         String resultText = resultElement.getText();
 
-        Assert.assertEquals(resultText, "You pressed Cancel!");
+        Assert.assertEquals(resultText, CANCEL_BUTTON_RESULT_TEXT);
     }
 }

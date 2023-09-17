@@ -35,7 +35,7 @@ public class YandexMailLoginTest extends TestBase {
         log.info("Enter username and click login button");
         driver().findElement(EMAIL_FIELD).sendKeys(username);
         driver().findElement(LOGIN_BUTTON_AUTHORIZATION_PAGE).click();
-        Thread.sleep(7000); //3.Add Thread.sleep for login test. What type of waiter is it - Implicit waiter?
+        Thread.sleep(3000); //3.Add Thread.sleep for login test. What type of waiter is it - Implicit waiter?
 
         log.info("Enter password and click login button");
         wait.until(ExpectedConditions.visibilityOfElementLocated(PASSWORD_FIELD));

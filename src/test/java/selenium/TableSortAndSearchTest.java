@@ -142,6 +142,7 @@ public class TableSortAndSearchTest extends TestBase {
                 }
             }
         }
+
         public List<Employee> sortEmployees(int age, double salary) {
             getEmployeeDataFromAllPages();
 

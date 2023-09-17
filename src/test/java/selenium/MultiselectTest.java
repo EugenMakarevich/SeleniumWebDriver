@@ -20,25 +20,26 @@ public class MultiselectTest extends TestBase {
 
     @Test
     public void testMultiselect() {
-        log.info("Navigating to the page: {}", MULTISELECT_TEST_URL);
+        log.info("Open the URL: {}", MULTISELECT_TEST_URL);
         driver().get(MULTISELECT_TEST_URL);
 
         WebElement multiSelect = driver().findElement(MULTISELECT);
         List<WebElement> options = multiSelect.findElements(MULTISELECT_OPTION);
         List<String> selectedOptions = new ArrayList<>();
 
-        log.info("Selecting random options:");
         int optionsNum = 3;
+        log.info("Select {} random options:", optionsNum);
         Random random = new Random();
         for (int i = 0; i < optionsNum; i++) {
             int randomIndex = random.nextInt(options.size());
             WebElement option = options.get(randomIndex);
             option.click();
-            selectedOptions.add(option.getText());
             log.info("Option {}: {}", i, option.getText());
+            selectedOptions.add(option.getText());
             options.remove(randomIndex);
         }
 
+        log.info("Verify options are selected");
         for (String selectedOption : selectedOptions) {
             WebElement selectedElement = multiSelect.findElement(By.xpath(String.format("//option[text()='%s']", selectedOption)));
             Assert.assertTrue(selectedElement.isSelected(), String.format("%s is not selected.", selectedOption));

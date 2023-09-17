@@ -16,6 +16,9 @@ public class TestConstants {
     public static final String LOADING_DATA_DYNAMICALLY_URL = "https://demo.seleniumeasy.com/dynamic-data-loading-demo.html";
     public static final String PROGRESS_BAR_URL = "https://demo.seleniumeasy.com/bootstrap-download-progress-demo.html";
     public static final String TABLE_TEST_URL = "https://demo.seleniumeasy.com/table-sort-search-demo.html";
+    public static final String ALERT_TEXT = "I am an alert box!";
+    public static final String OK_BUTTON_RESULT_TEXT = "You pressed OK!";
+    public static final String CANCEL_BUTTON_RESULT_TEXT = "You pressed Cancel!";
     public static final int DOWNLOAD_PERCENT = 50;
     public static final double TAX = 0.2;
 }

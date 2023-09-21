@@ -30,13 +30,13 @@ public class TableSortAndSearchTest extends TestBase {
         if (!selectedOption.equals(optionToBeSelected)) {
             showEntriesDropdown.selectByVisibleText(optionToBeSelected);
         }
-        Assert.assertEquals(optionToBeSelected, showEntriesDropdown.getFirstSelectedOption().getText());
+        Assert.assertEquals(optionToBeSelected, showEntriesDropdown.getFirstSelectedOption().getText(), String.format("%s is not selected.", optionToBeSelected));
 
         int age = 40;
         double salary = 150000.0;
         log.info("Sort employees by following criteria: age > {} and salary <= {}", age, salary);
         List<Employee> sortedList = new Employee().sortEmployees(age, salary);
-        Assert.assertFalse(sortedList.isEmpty());
+        Assert.assertFalse(sortedList.isEmpty(), "Sorted list is empty!");
 
         log.info("Print employees who have age > {} and salary <= {}", age, salary);
         for (Employee employee : sortedList) {

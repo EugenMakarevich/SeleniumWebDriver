@@ -37,6 +37,7 @@ public class ByConstants {
     //Loading the data Dynamically locators
     public static final By GET_NEW_USER_BUTTON = By.id("save");
     public static final By USER_INFORMATION_BOX = By.id("loading");
+    public static final By USER_PHOTO = By.tagName("img");
 
     //Progress Bar Test locators
     public static final By DOWNLOAD_BUTTON = By.id("cricle-btn");

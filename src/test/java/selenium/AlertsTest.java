@@ -27,7 +27,7 @@ public class AlertsTest extends TestBase {
         String alertText = alert.getText();
 
         log.info("Verify the alert text is '{}'", ALERT_TEXT);
-        Assert.assertEquals(alertText, ALERT_TEXT);
+        Assert.assertEquals(alertText, ALERT_TEXT, "Alert box text mismatch!");
 
         log.info("Close the alert");
         alert.accept();
@@ -51,7 +51,7 @@ public class AlertsTest extends TestBase {
         WebElement resultElement = driver().findElement(CONFIRM_BOX_RESULT);
         String resultText = resultElement.getText();
 
-        Assert.assertEquals(resultText, OK_BUTTON_RESULT_TEXT);
+        Assert.assertEquals(resultText, OK_BUTTON_RESULT_TEXT, "Ok button result text mismatch!");
     }
 
     @Test
@@ -72,6 +72,6 @@ public class AlertsTest extends TestBase {
         WebElement resultElement = driver().findElement(CONFIRM_BOX_RESULT);
         String resultText = resultElement.getText();
 
-        Assert.assertEquals(resultText, CANCEL_BUTTON_RESULT_TEXT);
+        Assert.assertEquals(resultText, CANCEL_BUTTON_RESULT_TEXT, "Cancel button result text mismatch!");
     }
 }

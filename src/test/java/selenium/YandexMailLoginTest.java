@@ -45,7 +45,7 @@ public class YandexMailLoginTest extends TestBase {
         log.info("Assert the user is logged into personal account");
         wait.until(ExpectedConditions.titleContains(YANDEX_MAIL_INBOX_TITLE));
         new WebDriverWait(driver(),SHORT_TIMEOUT, Duration.ofMillis(300)).until(ExpectedConditions.visibilityOfElementLocated(USER_ACCOUNT_NAME)); //4. Add explicit waiter for login test, which will wait until name appears (after login). Add polling frequency, which is differ from default value
-        Assert.assertEquals(username, driver().findElement(USER_ACCOUNT_NAME).getText());
+        Assert.assertEquals(username, driver().findElement(USER_ACCOUNT_NAME).getText(), "Username is different from expected!");
         Assert.assertTrue(driver().getTitle().contains(YANDEX_MAIL_INBOX_TITLE),"Unexpected page title");
     }
 }

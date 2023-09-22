@@ -21,6 +21,7 @@ public class TestConstants {
     public static final String CANCEL_BUTTON_RESULT_TEXT = "You pressed Cancel!";
     public static final String FIRST_NAME_TEXT = "First Name";
     public static final String LAST_NAME_TEXT = "Last Name";
+    public static final String DEFAULT_PROGRESS_BAR_VALUE = "0%";
     public static final int DOWNLOAD_PERCENT = 50;
     public static final double TAX = 0.2;
 }

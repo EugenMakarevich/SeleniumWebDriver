@@ -46,6 +46,4 @@ public class ByConstants {
     //Table Sort And Search Demo locators
     public static final By SHOW_ENTRIES_DROPDOWN = By.name("example_length");
     public static final By NEXT_PAGE_BUTTON = By.id("example_next");
-
-
 }

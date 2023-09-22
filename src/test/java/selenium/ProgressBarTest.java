@@ -2,19 +2,19 @@ package selenium;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import testbase.TestBase;
 
 import static constants.ByConstants.DOWNLOAD_BUTTON;
 import static constants.ByConstants.PERCENT_TEXT;
-import static constants.TestConstants.DOWNLOAD_PERCENT;
-import static constants.TestConstants.PROGRESS_BAR_URL;
+import static constants.TestConstants.*;
 
 @Slf4j
 public class ProgressBarTest extends TestBase {
 
     @Test
-    public void TestProgressBar() {
+    public void testProgressBarDownloadCounter() {
         log.info("Open the URL: {}", PROGRESS_BAR_URL);
         driver().get(PROGRESS_BAR_URL);
 
@@ -34,5 +34,7 @@ public class ProgressBarTest extends TestBase {
 
         log.info("Refresh the page");
         driver().navigate().refresh();
+
+        Assert.assertEquals(driver().findElement(PERCENT_TEXT).getText(), DEFAULT_PROGRESS_BAR_VALUE, String.format("The progress bar is not set to %s; page is not refreshed", DEFAULT_PROGRESS_BAR_VALUE));
     }
 }

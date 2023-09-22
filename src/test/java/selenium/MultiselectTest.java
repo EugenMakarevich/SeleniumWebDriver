@@ -17,9 +17,10 @@ import static constants.TestConstants.MULTISELECT_TEST_URL;
 
 @Slf4j
 public class MultiselectTest extends TestBase {
+    public static final int NUM_OF_OPTIONS_TO_BE_SELECTED = 3;
 
     @Test
-    public void testMultiselect() {
+    public void testMultiselectOptionsSelected() {
         log.info("Open the URL: {}", MULTISELECT_TEST_URL);
         driver().get(MULTISELECT_TEST_URL);
 
@@ -27,10 +28,9 @@ public class MultiselectTest extends TestBase {
         List<WebElement> options = multiSelect.findElements(MULTISELECT_OPTION);
         List<String> selectedOptions = new ArrayList<>();
 
-        int optionsNum = 3;
-        log.info("Select {} random options:", optionsNum);
+        log.info("Select {} random options", NUM_OF_OPTIONS_TO_BE_SELECTED);
         Random random = new Random();
-        for (int i = 0; i < optionsNum; i++) {
+        for (int i = 0; i < NUM_OF_OPTIONS_TO_BE_SELECTED; i++) {
             int randomIndex = random.nextInt(options.size());
             WebElement option = options.get(randomIndex);
             option.click();
@@ -39,7 +39,6 @@ public class MultiselectTest extends TestBase {
             options.remove(randomIndex);
         }
 
-        log.info("Verify options are selected");
         for (String selectedOption : selectedOptions) {
             WebElement selectedElement = multiSelect.findElement(By.xpath(String.format("//option[text()='%s']", selectedOption)));
             Assert.assertTrue(selectedElement.isSelected(), String.format("%s is not selected.", selectedOption));

@@ -18,13 +18,12 @@ import static constants.TimeOutConstants.MEDIUM_TIMEOUT;
 @Slf4j
 public class LoadingDataDynamicallyTest extends TestBase {
     WebDriverWait wait;
-    SoftAssert softAssert;
+
     @BeforeClass
     @Override
     public void setUp() {
         super.setUp();
         wait = new WebDriverWait(driver(), MEDIUM_TIMEOUT, Duration.ofMillis(200));
-        softAssert = new SoftAssert();
     }
 
     @Test
@@ -43,6 +42,7 @@ public class LoadingDataDynamicallyTest extends TestBase {
         String userInfoText = userInfoElement.getText();
         userInfoText = userInfoText.replaceAll("\\n", " ");
 
+        SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(userInfoText.contains(FIRST_NAME_TEXT), String.format("%s text is not present in the user information block", FIRST_NAME_TEXT));
         softAssert.assertTrue(userInfoText.contains(LAST_NAME_TEXT), String.format("%s text is not present in the user information block", LAST_NAME_TEXT));
         softAssert.assertNotNull(imgTag, "The img tag is not present in the DOM within the user information block");

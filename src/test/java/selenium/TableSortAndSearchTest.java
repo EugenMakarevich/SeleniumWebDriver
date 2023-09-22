@@ -11,7 +11,7 @@ import testbase.TestBase;
 import java.util.List;
 
 import static constants.ByConstants.SHOW_ENTRIES_DROPDOWN;
-import static constants.TestConstants.TABLE_TEST_URL;
+import static constants.UrlConstants.TABLE_TEST_URL;
 
 @Slf4j
 public class TableSortAndSearchTest extends TestBase {

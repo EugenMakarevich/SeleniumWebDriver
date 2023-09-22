@@ -14,6 +14,7 @@ import java.time.Duration;
 import static constants.ByConstants.*;
 import static constants.TestConstants.*;
 import static constants.TimeOutConstants.SHORT_TIMEOUT;
+import static constants.UrlConstants.YANDEX_MAIL_URL;
 
 @Slf4j
 public class YandexMailLoginTest extends TestBase {

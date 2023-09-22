@@ -8,7 +8,9 @@ import testbase.TestBase;
 
 import static constants.ByConstants.DOWNLOAD_BUTTON;
 import static constants.ByConstants.PERCENT_TEXT;
-import static constants.TestConstants.*;
+import static constants.TestConstants.DEFAULT_PROGRESS_BAR_VALUE;
+import static constants.TestConstants.DOWNLOAD_PERCENT;
+import static constants.UrlConstants.PROGRESS_BAR_URL;
 
 @Slf4j
 public class ProgressBarTest extends TestBase {

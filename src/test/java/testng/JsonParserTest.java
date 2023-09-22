@@ -10,7 +10,7 @@ import shop.VirtualItem;
 
 import java.io.File;
 
-import static constants.TestConstants.RESOURCE_PATH;
+import static constants.UrlConstants.RESOURCE_PATH;
 
 public class JsonParserTest {
     private Cart expectedCart;

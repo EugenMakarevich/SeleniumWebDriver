@@ -9,6 +9,7 @@ import testbase.TestBase;
 
 import static constants.ByConstants.*;
 import static constants.TestConstants.*;
+import static constants.UrlConstants.ALERTS_TEST_URL;
 
 @Slf4j
 public class AlertsTest extends TestBase {

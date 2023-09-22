@@ -13,7 +13,7 @@ import java.util.Random;
 
 import static constants.ByConstants.MULTISELECT;
 import static constants.ByConstants.MULTISELECT_OPTION;
-import static constants.TestConstants.MULTISELECT_TEST_URL;
+import static constants.UrlConstants.MULTISELECT_TEST_URL;
 
 @Slf4j
 public class MultiselectTest extends TestBase {

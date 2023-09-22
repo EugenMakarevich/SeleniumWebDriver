@@ -14,6 +14,7 @@ import java.time.Duration;
 import static constants.ByConstants.*;
 import static constants.TestConstants.*;
 import static constants.TimeOutConstants.MEDIUM_TIMEOUT;
+import static constants.UrlConstants.LOADING_DATA_DYNAMICALLY_URL;
 
 @Slf4j
 public class LoadingDataDynamicallyTest extends TestBase {

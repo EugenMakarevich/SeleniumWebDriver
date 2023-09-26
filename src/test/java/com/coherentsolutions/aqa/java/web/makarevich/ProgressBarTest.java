@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.coherentsolutions.aqa.web.makarevich.testbase.TestBase;
 
 import static com.coherentsolutions.aqa.web.makarevich.constants.ByConstants.DOWNLOAD_BUTTON;
 import static com.coherentsolutions.aqa.web.makarevich.constants.ByConstants.PERCENT_TEXT;

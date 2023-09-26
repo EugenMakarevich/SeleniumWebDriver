@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import com.coherentsolutions.aqa.web.makarevich.testbase.TestBase;
 
 import java.time.Duration;
 
@@ -42,12 +41,12 @@ public class LoadingDataDynamicallyTest extends TestBase {
         WebElement imgTag = userInfoElement.findElement(USER_PHOTO);
         String userInfoText = userInfoElement.getText();
         userInfoText = userInfoText.replaceAll("\\n", " ");
+        log.info("User Info: {}", userInfoText);
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(userInfoText.contains(FIRST_NAME_TEXT), String.format("%s text is not present in the user information block", FIRST_NAME_TEXT));
         softAssert.assertTrue(userInfoText.contains(LAST_NAME_TEXT), String.format("%s text is not present in the user information block", LAST_NAME_TEXT));
         softAssert.assertNotNull(imgTag, "The img tag is not present in the DOM within the user information block");
         softAssert.assertAll();
-        log.info("User Info: {}", userInfoText);
     }
 }

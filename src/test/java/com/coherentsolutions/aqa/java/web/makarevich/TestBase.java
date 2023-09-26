@@ -1,4 +1,4 @@
-package com.coherentsolutions.aqa.web.makarevich.testbase;
+package com.coherentsolutions.aqa.java.web.makarevich;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;

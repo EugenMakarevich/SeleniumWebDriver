@@ -10,7 +10,7 @@ public class Employee {
     private String position;
     private String office;
     private int age;
-    private String start_date;
+    private String startDate;
     private double salary;
 
     @Override
@@ -20,7 +20,7 @@ public class Employee {
                 ", position='" + position + '\'' +
                 ", office='" + office + '\'' +
                 ", age=" + age +
-                ", start_date='" + start_date + '\'' +
+                ", start_date='" + startDate + '\'' +
                 ", salary=" + salary +
                 '}';
     }

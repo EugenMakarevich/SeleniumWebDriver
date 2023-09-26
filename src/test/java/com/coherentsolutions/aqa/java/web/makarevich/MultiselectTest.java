@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.coherentsolutions.aqa.web.makarevich.testbase.TestBase;
 
 import java.util.ArrayList;
 import java.util.List;

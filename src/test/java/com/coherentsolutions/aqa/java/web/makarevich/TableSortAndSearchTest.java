@@ -6,7 +6,6 @@ import com.coherentsolutions.aqa.web.makarevich.services.Employees;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.coherentsolutions.aqa.web.makarevich.testbase.TestBase;
 
 import java.util.List;
 
@@ -15,10 +14,9 @@ import static com.coherentsolutions.aqa.web.makarevich.constants.UrlConstants.TA
 
 @Slf4j
 public class TableSortAndSearchTest extends TestBase {
-
-    public static final String optionToBeSelected = "10";
-    public static final int age = 40;
-    public static final double salary = 150000.0;
+    public static final String OPTION_TO_BE_SELECTED = "10";
+    public static final int AGE = 40;
+    public static final double SALARY = 150000.0;
 
     @Test
     public void testTableSortAndSearch() {
@@ -27,20 +25,16 @@ public class TableSortAndSearchTest extends TestBase {
 
         Select showEntriesDropdown = new Select(driver().findElement(SHOW_ENTRIES_DROPDOWN));
         String selectedOption = showEntriesDropdown.getFirstSelectedOption().getText();
-        log.info("Set up the Show {} entries filter", optionToBeSelected);
-        if (!selectedOption.equals(optionToBeSelected)) {
-            showEntriesDropdown.selectByVisibleText(optionToBeSelected);
+        log.info("Set up the Show {} entries filter", OPTION_TO_BE_SELECTED);
+        if (!selectedOption.equals(OPTION_TO_BE_SELECTED)) {
+            showEntriesDropdown.selectByVisibleText(OPTION_TO_BE_SELECTED);
         }
         selectedOption = showEntriesDropdown.getFirstSelectedOption().getText();
-        Assert.assertEquals(optionToBeSelected, selectedOption, String.format("%s is not selected in Show entries dropdown", optionToBeSelected));
+        Assert.assertEquals(OPTION_TO_BE_SELECTED, selectedOption, String.format("%s is not selected in Show entries dropdown", OPTION_TO_BE_SELECTED));
 
-        log.info("Sort employees by following criteria: age > {} and salary <= {}", age, salary);
-        List<Employee> sortedEmployeeList = new Employees(driver()).sortEmployees(age, salary);
+        log.info("Sort employees by following criteria: age > {} and salary <= {}", AGE, SALARY);
+        List<Employee> sortedEmployeeList = new Employees(driver()).sortEmployees(AGE, SALARY);
+
         Assert.assertFalse(sortedEmployeeList.isEmpty(), "Sorted employee list is empty!");
-
-        log.info("Print sorted employees");
-        for (Employee employee : sortedEmployeeList) {
-            log.info(employee.toString());
-        }
     }
 }

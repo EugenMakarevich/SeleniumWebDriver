@@ -33,7 +33,7 @@ public class Employees {
             employee.setPosition(cols.get(1).getText());
             employee.setOffice(cols.get(2).getText());
             employee.setAge(Integer.parseInt(cols.get(3).getText()));
-            employee.setStart_date(cols.get(4).getText());
+            employee.setStartDate(cols.get(4).getText());
             employee.setSalary(Integer.parseInt(cols.get(5).getText().replaceAll("[^0-9]", "")));
 
             employees.add(employee);

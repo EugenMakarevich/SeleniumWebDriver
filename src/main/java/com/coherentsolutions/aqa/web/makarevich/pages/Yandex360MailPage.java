@@ -10,6 +10,10 @@ public class Yandex360MailPage extends PageBase {
         super(driver);
     }
 
+    public boolean isLoginButtonDisplayed() {
+        return driver.findElement(loginButton).isDisplayed();
+    }
+
     public void clickLoginButton() {
         driver.findElement(loginButton).click();
     }

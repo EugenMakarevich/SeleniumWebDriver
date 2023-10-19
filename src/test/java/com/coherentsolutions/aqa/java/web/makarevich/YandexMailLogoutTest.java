@@ -1,7 +1,6 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
 import com.coherentsolutions.aqa.web.makarevich.pages.Yandex360MailPage;
-import com.coherentsolutions.aqa.web.makarevich.pages.YandexMailInboxPage;
 import com.coherentsolutions.aqa.web.makarevich.pages.YandexMailLoginPage;
 import com.coherentsolutions.aqa.web.makarevich.pages.components.Header;
 import org.testng.Assert;
@@ -15,7 +14,6 @@ import static com.coherentsolutions.aqa.web.makarevich.constants.UrlConstants.YA
 public class YandexMailLogoutTest extends TestBase {
     Yandex360MailPage yandex360MailPage;
     YandexMailLoginPage yandexMailLoginPage;
-    YandexMailInboxPage yandexMailInboxPage;
     Header header;
 
     @BeforeClass
@@ -24,7 +22,6 @@ public class YandexMailLogoutTest extends TestBase {
         super.setUp();
         yandex360MailPage = new Yandex360MailPage(driver());
         yandexMailLoginPage = new YandexMailLoginPage(driver());
-        yandexMailInboxPage = new YandexMailInboxPage(driver());
         header = new Header(driver());
     }
 
@@ -37,7 +34,7 @@ public class YandexMailLogoutTest extends TestBase {
                 .clickLoginButton()
                 .enterPassword(YANDEX_MAIL_PASSWORD_2)
                 .clickLoginButton();
-        Assert.assertTrue(yandexMailInboxPage.isAvatarImgDisplayed());
+        Assert.assertTrue(header.isAccountImgDisplayed());
 
         header.clickAccountImg().clickLogoutLink();
         Assert.assertTrue(yandex360MailPage.isLoginButtonDisplayed());

@@ -7,18 +7,30 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import static com.coherentsolutions.aqa.web.makarevich.constants.TimeOutConstants.LONG_TIMEOUT;
 
 public class WebDriverUtils {
+    private static WebDriver driver;
+
+    private WebDriverUtils() {}
+
     public static WebDriver setWebDriver() {
-        WebDriver driver;
-        switch (ConfigUtils.getProperty("driver.browser")) {
-            case "chrome":
-                driver = new ChromeDriver();
-                break;
-            default:
-                driver = new FirefoxDriver();
-                break;
+        if (driver == null) {
+            switch (ConfigUtils.getProperty("driver.browser")) {
+                case "chrome":
+                    driver = new ChromeDriver();
+                    break;
+                default:
+                    driver = new FirefoxDriver();
+                    break;
+            }
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(LONG_TIMEOUT);
         }
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(LONG_TIMEOUT);
         return driver;
+    }
+
+    public static void closeDriver() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 }

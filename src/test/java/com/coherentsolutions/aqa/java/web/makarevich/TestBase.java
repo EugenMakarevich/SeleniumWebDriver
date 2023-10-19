@@ -1,24 +1,24 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
+import com.coherentsolutions.aqa.web.makarevich.utils.WebDriverUtils;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import com.coherentsolutions.aqa.web.makarevich.utils.WebDriverUtils;
 
 public class TestBase {
     private WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
-    public void setUp() {
+    protected void setUp() {
         driver = WebDriverUtils.setWebDriver();
     }
 
     @AfterClass(alwaysRun = true)
-    public void tearDown() {
-        if (driver != null) driver.quit();
+    protected void tearDown() {
+        WebDriverUtils.closeDriver();
     }
 
-    public WebDriver driver() {
+    protected WebDriver driver() {
         return driver;
     }
 }

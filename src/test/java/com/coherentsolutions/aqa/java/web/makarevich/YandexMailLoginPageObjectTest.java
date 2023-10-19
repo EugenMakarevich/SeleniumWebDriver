@@ -1,8 +1,8 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
 import com.coherentsolutions.aqa.web.makarevich.pages.Yandex360MailPage;
-import com.coherentsolutions.aqa.web.makarevich.pages.YandexMailInboxPage;
 import com.coherentsolutions.aqa.web.makarevich.pages.YandexMailLoginPage;
+import com.coherentsolutions.aqa.web.makarevich.pages.components.Header;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -14,7 +14,7 @@ import static com.coherentsolutions.aqa.web.makarevich.constants.UrlConstants.YA
 public class YandexMailLoginPageObjectTest extends TestBase {
     Yandex360MailPage yandex360MailPage;
     YandexMailLoginPage yandexMailLoginPage;
-    YandexMailInboxPage yandexMailInboxPage;
+    Header header;
 
     @BeforeClass
     @Override
@@ -22,7 +22,7 @@ public class YandexMailLoginPageObjectTest extends TestBase {
         super.setUp();
         yandex360MailPage = new Yandex360MailPage(driver());
         yandexMailLoginPage = new YandexMailLoginPage(driver());
-        yandexMailInboxPage = new YandexMailInboxPage(driver());
+        header = new Header(driver());
     }
 
     @Test
@@ -34,9 +34,9 @@ public class YandexMailLoginPageObjectTest extends TestBase {
                 .clickLoginButton()
                 .enterPassword(YANDEX_MAIL_PASSWORD_2)
                 .clickLoginButton();
+        Assert.assertTrue(header.isAccountNameDisplayed());
 
-        String actualUsername = yandexMailInboxPage.getUsername();
-        Assert.assertTrue(yandexMailInboxPage.isUsernameDisplayed());
+        String actualUsername = header.getAccountName();
         Assert.assertEquals(YANDEX_MAIL_USERNAME_2, actualUsername);
     }
 }

@@ -26,7 +26,7 @@ public class YandexMailLoginPageObjectTest extends TestBase {
     }
 
     @Test
-    public void TestYandexMailLoginPageObject() {
+    public void testYandexMailLoginPageObject() {
         driver().get(YANDEX_MAIL_URL);
         yandex360MailPage.clickLoginButton();
         yandexMailLoginPage

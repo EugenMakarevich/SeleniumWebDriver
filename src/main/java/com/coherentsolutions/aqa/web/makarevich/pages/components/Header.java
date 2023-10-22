@@ -1,16 +1,16 @@
 package com.coherentsolutions.aqa.web.makarevich.pages.components;
 
-import com.coherentsolutions.aqa.web.makarevich.pages.PageBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class Header extends PageBase {
+public class Header {
+    private WebDriver driver;
     private By accountImg = By.cssSelector("a.user-account .user-pic .user-pic__image");
     private By logoutLink = By.cssSelector(".menu__group .menu__list-item:last-child");
     private By accountName = By.cssSelector("a.user-account_left-name > span.user-account__name");
 
     public Header(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
     }
 
     public boolean isAccountNameDisplayed() {

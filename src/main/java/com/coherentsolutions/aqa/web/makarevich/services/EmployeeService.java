@@ -12,11 +12,11 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Employees {
+public class EmployeeService {
     private WebDriver driver;
     private List<Employee> employees = new ArrayList<>();
 
-    public Employees(WebDriver driver) {
+    public EmployeeService(WebDriver driver) {
         this.driver = driver;
     }
 

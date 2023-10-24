@@ -2,7 +2,7 @@ package com.coherentsolutions.aqa.java.web.makarevich;
 
 import lombok.extern.slf4j.Slf4j;
 import com.coherentsolutions.aqa.web.makarevich.model.Employee;
-import com.coherentsolutions.aqa.web.makarevich.services.Employees;
+import com.coherentsolutions.aqa.web.makarevich.services.EmployeeService;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -33,7 +33,7 @@ public class TableSortAndSearchTest extends TestBase {
         Assert.assertEquals(OPTION_TO_BE_SELECTED, selectedOption, String.format("%s is not selected in Show entries dropdown", OPTION_TO_BE_SELECTED));
 
         log.info("Sort employees by following criteria: age > {} and salary <= {}", AGE, SALARY);
-        List<Employee> sortedEmployeeList = new Employees(driver()).sortEmployees(AGE, SALARY);
+        List<Employee> sortedEmployeeList = new EmployeeService(driver()).sortEmployees(AGE, SALARY);
 
         Assert.assertFalse(sortedEmployeeList.isEmpty(), "Sorted employee list is empty!");
     }

@@ -12,15 +12,17 @@ public class Yandex360MailPage extends PageBase {
         super(driver);
     }
 
-    public void open() {
+    public Yandex360MailPage open() {
         driver.get(YANDEX_MAIL_URL);
+        return this;
     }
 
     public boolean isLoginButtonDisplayed() {
         return driver.findElement(loginButton).isDisplayed();
     }
 
-    public void clickLoginButton() {
+    public YandexMailLoginPage clickLoginButton() {
         driver.findElement(loginButton).click();
+        return new YandexMailLoginPage(driver);
     }
 }

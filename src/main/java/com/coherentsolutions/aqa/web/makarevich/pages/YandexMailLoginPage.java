@@ -22,8 +22,17 @@ public class YandexMailLoginPage extends PageBase {
         return this;
     }
 
-    public YandexMailLoginPage clickLoginButton() {
-        driver.findElement(loginButton).click();
+    public YandexMailLoginPage submitUsername() {
+        clickLoginButton();
         return this;
+    }
+
+    public YandexMailInboxPage submitPassword() {
+        clickLoginButton();
+        return new YandexMailInboxPage(driver);
+    }
+
+    private void clickLoginButton() {
+        driver.findElement(loginButton).click();
     }
 }

@@ -10,13 +10,13 @@ public class YandexMailLoginPageObjectTest extends TestBase {
 
     @Test
     public void testYandexMailLoginPageObject() {
-        yandex360MailPage.open();
-        yandex360MailPage.clickLoginButton();
-        yandexMailLoginPage
-                .enterUsername(YANDEX_MAIL_USERNAME_2)
+        yandex360MailPage
+                .open()
                 .clickLoginButton()
+                .enterUsername(YANDEX_MAIL_USERNAME_2)
+                .submitUsername()
                 .enterPassword(YANDEX_MAIL_PASSWORD_2)
-                .clickLoginButton();
+                .submitPassword();
         Assert.assertTrue(yandexMailInboxPage.getHeader().isAccountNameDisplayed(),"Account name is not displayed!");
 
         String actualUsername = yandexMailInboxPage.getHeader().getAccountName();

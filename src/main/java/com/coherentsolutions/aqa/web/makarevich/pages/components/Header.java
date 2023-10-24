@@ -1,37 +1,41 @@
 package com.coherentsolutions.aqa.web.makarevich.pages.components;
 
-import org.openqa.selenium.By;
+import com.coherentsolutions.aqa.web.makarevich.pages.PageBase;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class Header {
-    private WebDriver driver;
-    private By accountImg = By.cssSelector("a.user-account .user-pic .user-pic__image");
-    private By logoutLink = By.cssSelector(".menu__group .menu__list-item:last-child");
-    private By accountName = By.cssSelector("a.user-account_left-name > span.user-account__name");
+public class Header extends PageBase {
+    @FindBy(css = "a.user-account .user-pic .user-pic__image")
+    private WebElement accountImg;
+    @FindBy(css = ".menu__group .menu__list-item:last-child")
+    private WebElement logoutLink;
+    @FindBy(css = "a.user-account_left-name > span.user-account__name")
+    private WebElement accountName;
 
     public Header(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public boolean isAccountNameDisplayed() {
-        return driver.findElement(accountName).isDisplayed();
+        return accountName.isDisplayed();
     }
 
     public boolean isAccountImgDisplayed() {
-        return driver.findElement(accountImg).isDisplayed();
+        return accountImg.isDisplayed();
     }
 
     public String getAccountName() {
-        return driver.findElement(accountName).getText();
+        return accountName.getText();
     }
 
     public Header clickAccountImg() {
-        driver.findElement(accountImg).click();
+        accountImg.click();
         return this;
     }
 
     public Header clickLogoutLink() {
-        driver.findElement(logoutLink).click();
+        logoutLink.click();
         return this;
     }
 }

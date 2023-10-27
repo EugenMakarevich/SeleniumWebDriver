@@ -1,11 +1,10 @@
 package com.coherentsolutions.aqa.web.makarevich.pages.components;
 
-import com.coherentsolutions.aqa.web.makarevich.pages.PageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class Header extends PageBase {
+public class Header extends ComponentBase {
     @FindBy(css = "a.user-account .user-pic .user-pic__image")
     private WebElement accountImg;
     @FindBy(css = ".menu__group .menu__list-item:last-child")

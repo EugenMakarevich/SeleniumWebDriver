@@ -1,12 +1,12 @@
-package com.coherentsolutions.aqa.web.makarevich.pages;
+package com.coherentsolutions.aqa.web.makarevich.pages.components;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public abstract class PageBase {
-    protected WebDriver driver;
+public abstract class ComponentBase {
+    WebDriver driver;
 
-    protected PageBase(WebDriver driver) {
+    ComponentBase(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }

@@ -3,8 +3,7 @@ package com.coherentsolutions.aqa.java.web.makarevich;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.YANDEX_MAIL_PASSWORD_2;
-import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.YANDEX_MAIL_USERNAME_2;
+import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.*;
 
 public class YandexMailLoginPageObjectTest extends TestBase {
 
@@ -12,6 +11,7 @@ public class YandexMailLoginPageObjectTest extends TestBase {
     public void testYandexMailLoginPageObject() {
         yandex360MailPage
                 .open()
+                .takeScreenshot(SCREENSHOT_PNG_NAME)
                 .clickLoginButton()
                 .enterUsername(YANDEX_MAIL_USERNAME_2)
                 .submitUsername()

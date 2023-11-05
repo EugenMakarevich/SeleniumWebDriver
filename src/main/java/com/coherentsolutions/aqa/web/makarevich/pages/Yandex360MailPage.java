@@ -1,5 +1,6 @@
 package com.coherentsolutions.aqa.web.makarevich.pages;
 
+import com.coherentsolutions.aqa.web.makarevich.exceptions.TestInfrastructureException;
 import com.coherentsolutions.aqa.web.makarevich.utils.ScreenshotUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,7 +30,7 @@ public class Yandex360MailPage extends PageBase {
         return new YandexMailLoginPage(driver);
     }
 
-    public Yandex360MailPage takeScreenshot(String screenshotFileName) {
+    public Yandex360MailPage takeScreenshot(String screenshotFileName) throws TestInfrastructureException {
         ScreenshotUtil.takeScreenshot(driver, screenshotFileName);
         return this;
     }

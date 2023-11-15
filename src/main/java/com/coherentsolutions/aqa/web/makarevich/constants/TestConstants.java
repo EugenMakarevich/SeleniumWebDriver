@@ -15,4 +15,6 @@ public class TestConstants {
     public static final String LAST_NAME_TEXT = "Last Name";
     public static final String DEFAULT_PROGRESS_BAR_VALUE = "0%";
     public static final int DOWNLOAD_PERCENT = 50;
+    public static final String SCREENSHOT_FOLDER_PATH = "artifacts/screenshots/";
+    public static final String SCREENSHOT_PNG_NAME = "screenshot.png";
 }

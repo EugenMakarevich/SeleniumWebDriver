@@ -1,17 +1,18 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
+import com.coherentsolutions.aqa.web.makarevich.exceptions.TestInfrastructureException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.YANDEX_MAIL_PASSWORD_2;
-import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.YANDEX_MAIL_USERNAME_2;
+import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.*;
 
 public class YandexMailLogoutTest extends TestBase {
 
     @Test
-    public void testYandexMailLogout() {
+    public void testYandexMailLogout() throws TestInfrastructureException {
         yandex360MailPage
                 .open()
+                .takeScreenshot(SCREENSHOT_PNG_NAME)
                 .clickLoginButton()
                 .enterUsername(YANDEX_MAIL_USERNAME_2)
                 .submitUsername()

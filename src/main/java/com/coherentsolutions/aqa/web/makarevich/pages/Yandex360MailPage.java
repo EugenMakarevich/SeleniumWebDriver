@@ -31,7 +31,7 @@ public class Yandex360MailPage extends PageBase {
     }
 
     public Yandex360MailPage takeScreenshot(String screenshotFileName) throws TestInfrastructureException {
-        ScreenshotUtil.takeScreenshot(driver, screenshotFileName);
+        ScreenshotUtil.takeScreenshot(screenshotFileName);
         return this;
     }
 }

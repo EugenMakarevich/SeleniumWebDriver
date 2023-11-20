@@ -5,10 +5,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.*;
+import static com.coherentsolutions.aqa.web.makarevich.constants.TestSuitConstants.YANDEX;
 
 public class YandexMailLogoutTest extends TestBase {
 
-    @Test
+    @Test(groups = {YANDEX}, description = "Log out Yandex Mail")
     public void testYandexMailLogout() throws TestInfrastructureException {
         yandex360MailPage
                 .open()
@@ -21,6 +22,7 @@ public class YandexMailLogoutTest extends TestBase {
         Assert.assertTrue(yandexMailInboxPage.getHeader().isAccountImgDisplayed(), "Account image is not displayed!");
 
         yandexMailInboxPage.getHeader().clickAccountImg().clickLogoutLink();
-        Assert.assertTrue(yandex360MailPage.isLoginButtonDisplayed(), "Login button is not displayed!");
+        //Assert.assertTrue(yandex360MailPage.isLoginButtonDisplayed(), "Login button is not displayed!");
+        Assert.assertFalse(yandex360MailPage.isLoginButtonDisplayed(), "Login button is not displayed!");
     }
 }

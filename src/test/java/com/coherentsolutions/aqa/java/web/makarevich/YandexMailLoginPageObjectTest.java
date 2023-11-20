@@ -5,10 +5,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.*;
+import static com.coherentsolutions.aqa.web.makarevich.constants.TestSuitConstants.YANDEX;
 
 public class YandexMailLoginPageObjectTest extends TestBase {
 
-    @Test
+    @Test(groups = {YANDEX}, description = "Log into Yandex Mail")
     public void testYandexMailLoginPageObject() throws TestInfrastructureException {
         yandex360MailPage
                 .open()
@@ -21,6 +22,7 @@ public class YandexMailLoginPageObjectTest extends TestBase {
         Assert.assertTrue(yandexMailInboxPage.getHeader().isAccountNameDisplayed(),"Account name is not displayed!");
 
         String actualUsername = yandexMailInboxPage.getHeader().getAccountName();
-        Assert.assertEquals(YANDEX_MAIL_USERNAME_2, actualUsername, "Username does not match with displayed user account name!");
+        //Assert.assertEquals(YANDEX_MAIL_USERNAME_2, actualUsername, "Username does not match with displayed user account name!");
+        Assert.assertEquals("YANDEX_MAIL_USERNAME_2", actualUsername, "Username does not match with displayed user account name!");
     }
 }

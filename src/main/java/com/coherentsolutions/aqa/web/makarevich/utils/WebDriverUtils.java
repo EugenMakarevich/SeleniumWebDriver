@@ -27,6 +27,10 @@ public class WebDriverUtils {
         return driver;
     }
 
+    public static WebDriver getDriver() {
+        return driver;
+    }
+
     public static void closeDriver() {
         if (driver != null) {
             driver.quit();

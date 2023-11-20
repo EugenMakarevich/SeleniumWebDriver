@@ -1,5 +1,6 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
+import com.coherentsolutions.aqa.web.makarevich.listeners.ReportListener;
 import com.coherentsolutions.aqa.web.makarevich.pages.Yandex360MailPage;
 import com.coherentsolutions.aqa.web.makarevich.pages.YandexMailInboxPage;
 import com.coherentsolutions.aqa.web.makarevich.pages.YandexMailLoginPage;
@@ -7,7 +8,9 @@ import com.coherentsolutions.aqa.web.makarevich.utils.WebDriverUtils;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 
+@Listeners(ReportListener.class)
 public class TestBase {
     private WebDriver driver;
     Yandex360MailPage yandex360MailPage;

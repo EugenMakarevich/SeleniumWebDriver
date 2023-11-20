@@ -12,5 +12,7 @@
 hs_err_pid*
 .idea/
 target/
+allure-report/
+allure-results/
 artifacts/
 *.iml

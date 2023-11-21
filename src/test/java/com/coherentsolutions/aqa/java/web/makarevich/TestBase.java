@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 
-@Listeners(ReportListener.class)
+@Listeners({io.qameta.allure.testng.AllureTestNg.class, ReportListener.class}) //It works this way with screenshots attached, I tried to set it up in pom file, but it does not work for me
 public class TestBase {
     private WebDriver driver;
     Yandex360MailPage yandex360MailPage;

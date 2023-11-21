@@ -15,7 +15,7 @@ import static com.coherentsolutions.aqa.web.makarevich.utils.ScreenshotUtil.take
 
 @Slf4j
 public class MultimediaService {
-    private static final String SCREENSHOT_FAILURE = "Screenshot of the failure";
+    private static final String SCREENSHOT_FAILURE = "Failure";
     public static void attachScreenshot() {
         try {
             takeScreenshot("FailedScreenshot.png");

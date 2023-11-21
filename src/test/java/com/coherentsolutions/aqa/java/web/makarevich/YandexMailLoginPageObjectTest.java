@@ -1,6 +1,7 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
 import com.coherentsolutions.aqa.web.makarevich.exceptions.TestInfrastructureException;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,6 +11,7 @@ import static com.coherentsolutions.aqa.web.makarevich.constants.TestSuitConstan
 public class YandexMailLoginPageObjectTest extends TestBase {
 
     @Test(groups = {YANDEX}, description = "Log into Yandex Mail")
+    @Description("Log into Yandex Mail with valid credentials")
     public void testYandexMailLoginPageObject() throws TestInfrastructureException {
         yandex360MailPage
                 .open()

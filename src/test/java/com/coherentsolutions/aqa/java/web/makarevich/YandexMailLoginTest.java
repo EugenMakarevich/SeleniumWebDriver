@@ -12,7 +12,7 @@ import java.time.Duration;
 
 import static com.coherentsolutions.aqa.web.makarevich.constants.ByConstants.*;
 import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.*;
-import static com.coherentsolutions.aqa.web.makarevich.constants.TestSuitConstants.YANDEX;
+import static com.coherentsolutions.aqa.web.makarevich.constants.GlobalConstants.YANDEX;
 import static com.coherentsolutions.aqa.web.makarevich.constants.TimeOutConstants.SHORT_TIMEOUT;
 import static com.coherentsolutions.aqa.web.makarevich.constants.UrlConstants.YANDEX_MAIL_URL;
 

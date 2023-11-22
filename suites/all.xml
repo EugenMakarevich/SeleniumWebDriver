@@ -1,6 +1,9 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="All tests">
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
     <test name="All tests">
         <packages>
             <package name="com.coherentsolutions.aqa.java.web.makarevich.*"/>

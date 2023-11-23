@@ -16,10 +16,11 @@
         <testng.version>7.7.0</testng.version>
         <lombok.version>1.18.22</lombok.version>
         <logback-classic.version>1.2.9</logback-classic.version>
+        <suiteName>all</suiteName>
     </properties>
 
-    <groupId>UnitTesting</groupId>
-    <artifactId>UnitTesting</artifactId>
+    <groupId>SeleniumWebDriver</groupId>
+    <artifactId>SeleniumWebDriver</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
@@ -44,7 +45,7 @@
                 <configuration>
                     <testFailureIgnore>false</testFailureIgnore>
                     <suiteXmlFiles>
-                        <suiteXmlFile>suites/all.xml</suiteXmlFile>
+                        <suiteXmlFile>suites/${suiteName}.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         -Dfile.encoding=${project.build.sourceEncoding}
@@ -52,6 +53,7 @@
                     </argLine>
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                        <allure.report.directory>${project.build.directory}/allure-report</allure.report.directory>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>

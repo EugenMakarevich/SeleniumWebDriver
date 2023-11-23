@@ -24,7 +24,6 @@ public class YandexMailLogoutTest extends TestBase {
         Assert.assertTrue(yandexMailInboxPage.getHeader().isAccountImgDisplayed(), "Account image is not displayed!");
 
         yandexMailInboxPage.getHeader().clickAccountImg().clickLogoutLink();
-        //Assert.assertTrue(yandex360MailPage.isLoginButtonDisplayed(), "Login button is not displayed!");
-        Assert.assertFalse(yandex360MailPage.isLoginButtonDisplayed(), "Login button is not displayed!");
+        Assert.assertTrue(yandex360MailPage.isLoginButtonDisplayed(), "Login button is not displayed!");
     }
 }

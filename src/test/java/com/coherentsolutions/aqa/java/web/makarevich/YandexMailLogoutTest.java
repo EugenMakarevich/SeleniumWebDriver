@@ -1,6 +1,7 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
 import com.coherentsolutions.aqa.web.makarevich.exceptions.TestInfrastructureException;
+import io.qameta.allure.AllureId;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,6 +13,7 @@ public class YandexMailLogoutTest extends TestBase {
 
     @Test(groups = {YANDEX}, description = "Log out Yandex Mail")
     @Description("Log into Yandex Mail and log out")
+    @AllureId("2")
     public void testYandexMailLogout() throws TestInfrastructureException {
         yandex360MailPage
                 .open()

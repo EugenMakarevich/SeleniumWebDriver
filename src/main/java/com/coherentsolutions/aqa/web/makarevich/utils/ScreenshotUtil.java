@@ -4,7 +4,6 @@ import com.coherentsolutions.aqa.web.makarevich.exceptions.TestInfrastructureExc
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.io.FileHandler;
 
 import java.io.File;
@@ -26,7 +25,6 @@ public class ScreenshotUtil {
     }
 
     public static File takeScreenshotAsFile() {
-        WebDriver driver = WebDriverUtils.getDriver();
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        return ((TakesScreenshot) WebDriverUtils.getDriver()).getScreenshotAs(OutputType.FILE);
     }
 }

@@ -19,7 +19,8 @@ public class TestBase {
 
     @BeforeClass(alwaysRun = true)
     protected void setUp() {
-        driver = WebDriverUtils.setWebDriver();
+        //driver = WebDriverUtils.setWebDriver();
+        driver = WebDriverUtils.serGridWebDriver();
         yandex360MailPage = new Yandex360MailPage(driver);
         yandexMailLoginPage = new YandexMailLoginPage(driver);
         yandexMailInboxPage = new YandexMailInboxPage(driver);

@@ -1,8 +1,10 @@
 package com.coherentsolutions.aqa.web.makarevich.pages.components;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.annotations.Test;
 
 public class Header extends ComponentBase {
     @FindBy(css = "a.user-account .user-pic .user-pic__image")
@@ -28,11 +30,13 @@ public class Header extends ComponentBase {
         return accountName.getText();
     }
 
+    @Step("Click on user's profile image")
     public Header clickAccountImg() {
         accountImg.click();
         return this;
     }
 
+    @Step("Click on logout link")
     public Header clickLogoutLink() {
         logoutLink.click();
         return this;

@@ -12,6 +12,7 @@ import java.time.Duration;
 
 import static com.coherentsolutions.aqa.web.makarevich.constants.ByConstants.*;
 import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.*;
+import static com.coherentsolutions.aqa.web.makarevich.constants.GlobalConstants.YANDEX;
 import static com.coherentsolutions.aqa.web.makarevich.constants.TimeOutConstants.SHORT_TIMEOUT;
 import static com.coherentsolutions.aqa.web.makarevich.constants.UrlConstants.YANDEX_MAIL_URL;
 
@@ -34,8 +35,7 @@ public class YandexMailLoginTest extends TestBase {
                 {YANDEX_MAIL_USERNAME_2, YANDEX_MAIL_PASSWORD_2}
         };
     }
-
-    @Test(dataProvider = "yandexMailCredentials")
+    @Test(groups = {YANDEX}, description = "Log into Yandex Mail Fail", dataProvider = "yandexMailCredentials")
     public void testYandexMailLogin(String username, String password) throws InterruptedException {
         log.info("Navigate to the login main page");
         driver().get(YANDEX_MAIL_URL);

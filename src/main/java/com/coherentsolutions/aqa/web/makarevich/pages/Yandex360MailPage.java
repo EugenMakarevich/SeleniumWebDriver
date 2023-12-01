@@ -2,6 +2,7 @@ package com.coherentsolutions.aqa.web.makarevich.pages;
 
 import com.coherentsolutions.aqa.web.makarevich.exceptions.TestInfrastructureException;
 import com.coherentsolutions.aqa.web.makarevich.utils.ScreenshotUtil;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +17,7 @@ public class Yandex360MailPage extends PageBase {
         super(driver);
     }
 
+    @Step("Open Yandex Mail page")
     public Yandex360MailPage open() {
         driver.get(YANDEX_MAIL_URL);
         return this;
@@ -25,13 +27,15 @@ public class Yandex360MailPage extends PageBase {
         return loginButton.isDisplayed();
     }
 
+    @Step("Click on login button")
     public YandexMailLoginPage clickLoginButton() {
         loginButton.click();
         return new YandexMailLoginPage(driver);
     }
 
+    @Step("Take screenshot")
     public Yandex360MailPage takeScreenshot(String screenshotFileName) throws TestInfrastructureException {
-        ScreenshotUtil.takeScreenshot(driver, screenshotFileName);
+        ScreenshotUtil.takeScreenshot(screenshotFileName);
         return this;
     }
 }

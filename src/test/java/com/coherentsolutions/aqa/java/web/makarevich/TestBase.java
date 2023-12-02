@@ -4,7 +4,11 @@ import com.coherentsolutions.aqa.web.makarevich.listeners.TestListener;
 import com.coherentsolutions.aqa.web.makarevich.pages.Yandex360MailPage;
 import com.coherentsolutions.aqa.web.makarevich.pages.YandexMailInboxPage;
 import com.coherentsolutions.aqa.web.makarevich.pages.YandexMailLoginPage;
+import com.coherentsolutions.aqa.web.makarevich.utils.ConfigUtils;
 import com.coherentsolutions.aqa.web.makarevich.utils.WebDriverUtils;
+import com.coherentsolutions.aqa.web.makarevich.webdriver.GridWebDriverStrategy;
+import com.coherentsolutions.aqa.web.makarevich.webdriver.LocalWebDriverStrategy;
+import com.coherentsolutions.aqa.web.makarevich.webdriver.WebDriverContext;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -17,10 +21,24 @@ public class TestBase {
     YandexMailLoginPage yandexMailLoginPage;
     YandexMailInboxPage yandexMailInboxPage;
 
+    protected static void setWebDriverStrategy() {
+        switch (ConfigUtils.getProperty("driver.strategy")) {
+            case "GRID":
+                WebDriverContext.setWebDriverStrategy(new GridWebDriverStrategy());
+                break;
+            case "LOCAL":
+            default:
+                WebDriverContext.setWebDriverStrategy(new LocalWebDriverStrategy());
+                break;
+        }
+    }
+
     @BeforeClass(alwaysRun = true)
     protected void setUp() {
         //driver = WebDriverUtils.setWebDriver();
-        driver = WebDriverUtils.serGridWebDriver();
+        //driver = WebDriverUtils.serGridWebDriver();
+        setWebDriverStrategy();
+        driver = WebDriverUtils.getDriver();
         yandex360MailPage = new Yandex360MailPage(driver);
         yandexMailLoginPage = new YandexMailLoginPage(driver);
         yandexMailInboxPage = new YandexMailInboxPage(driver);
@@ -31,6 +49,7 @@ public class TestBase {
         WebDriverUtils.closeDriver();
     }
 
+    //For all test cases
     protected WebDriver driver() {
         return driver;
     }

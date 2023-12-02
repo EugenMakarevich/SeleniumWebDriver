@@ -18,6 +18,10 @@ public class WebDriverUtils {
 
     private WebDriverUtils() {}
 
+    public static void setWebDriver(WebDriver driver) {
+        WebDriverUtils.driver = driver;
+    }
+
     public static WebDriver setWebDriver() {
         if (driver == null) {
             switch (ConfigUtils.getProperty("driver.browser")) {

@@ -1,6 +1,6 @@
 package com.coherentsolutions.aqa.web.makarevich.webdriver;
 
-import com.coherentsolutions.aqa.web.makarevich.utils.ConfigUtils;
+import com.coherentsolutions.aqa.web.makarevich.configuration.Configuration;
 import com.coherentsolutions.aqa.web.makarevich.utils.WebDriverUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -16,7 +16,7 @@ public class GridWebDriverStrategy implements WebDriverStrategy {
     public void setStrategy() {
         DesiredCapabilities cap = new DesiredCapabilities();
 
-        switch (ConfigUtils.getProperty("driver.browser")) {
+        switch (Configuration.BROWSER) {
             case "chrome":
                 cap.setBrowserName("chrome");
                 break;
@@ -27,7 +27,7 @@ public class GridWebDriverStrategy implements WebDriverStrategy {
         WebDriver driver;
 
         try {
-            driver = new RemoteWebDriver(new URL(ConfigUtils.getProperty("hub.url")), cap);
+            driver = new RemoteWebDriver(new URL(Configuration.HUB_URL), cap);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }

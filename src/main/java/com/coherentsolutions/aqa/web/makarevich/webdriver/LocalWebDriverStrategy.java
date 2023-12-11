@@ -1,6 +1,6 @@
 package com.coherentsolutions.aqa.web.makarevich.webdriver;
 
-import com.coherentsolutions.aqa.web.makarevich.utils.ConfigUtils;
+import com.coherentsolutions.aqa.web.makarevich.configuration.Configuration;
 import com.coherentsolutions.aqa.web.makarevich.utils.WebDriverUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,7 +12,7 @@ public class LocalWebDriverStrategy implements WebDriverStrategy {
     @Override
     public void setStrategy() {
         WebDriver driver;
-            switch (ConfigUtils.getProperty("driver.browser")) {
+            switch (Configuration.BROWSER) {
                 case "chrome":
                     driver = new ChromeDriver();
                     break;

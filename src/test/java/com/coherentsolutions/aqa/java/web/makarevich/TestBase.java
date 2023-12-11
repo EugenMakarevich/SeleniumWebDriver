@@ -1,10 +1,10 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
+import com.coherentsolutions.aqa.web.makarevich.configuration.Configuration;
 import com.coherentsolutions.aqa.web.makarevich.listeners.TestListener;
 import com.coherentsolutions.aqa.web.makarevich.pages.Yandex360MailPage;
 import com.coherentsolutions.aqa.web.makarevich.pages.YandexMailInboxPage;
 import com.coherentsolutions.aqa.web.makarevich.pages.YandexMailLoginPage;
-import com.coherentsolutions.aqa.web.makarevich.utils.ConfigUtils;
 import com.coherentsolutions.aqa.web.makarevich.utils.WebDriverUtils;
 import com.coherentsolutions.aqa.web.makarevich.webdriver.GridWebDriverStrategy;
 import com.coherentsolutions.aqa.web.makarevich.webdriver.LocalWebDriverStrategy;
@@ -22,7 +22,7 @@ public class TestBase {
     YandexMailInboxPage yandexMailInboxPage;
 
     protected static void setWebDriverStrategy() {
-        switch (ConfigUtils.getProperty("driver.strategy")) {
+        switch (Configuration.DRIVER_STRATEGY.toUpperCase()) {
             case "GRID":
                 WebDriverContext.setWebDriverStrategy(new GridWebDriverStrategy());
                 break;
@@ -35,8 +35,6 @@ public class TestBase {
 
     @BeforeClass(alwaysRun = true)
     protected void setUp() {
-        //driver = WebDriverUtils.setWebDriver();
-        //driver = WebDriverUtils.serGridWebDriver();
         setWebDriverStrategy();
         driver = WebDriverUtils.getDriver();
         yandex360MailPage = new Yandex360MailPage(driver);
@@ -49,7 +47,7 @@ public class TestBase {
         WebDriverUtils.closeDriver();
     }
 
-    //For all test cases
+    //For old test cases
     protected WebDriver driver() {
         return driver;
     }

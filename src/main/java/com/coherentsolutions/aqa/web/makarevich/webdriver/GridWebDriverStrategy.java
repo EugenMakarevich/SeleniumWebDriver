@@ -15,7 +15,7 @@ public class GridWebDriverStrategy implements WebDriverStrategy {
     @Override
     public void setStrategy() {
         DesiredCapabilities cap = new DesiredCapabilities();
-
+//TODO: Need to get rid of the switch statement
         switch (Configuration.BROWSER) {
             case "chrome":
                 cap.setBrowserName("chrome");

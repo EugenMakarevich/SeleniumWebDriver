@@ -8,12 +8,17 @@ import com.coherentsolutions.aqa.web.makarevich.pages.YandexMailLoginPage;
 import com.coherentsolutions.aqa.web.makarevich.utils.WebDriverUtils;
 import com.coherentsolutions.aqa.web.makarevich.webdriver.GridWebDriverStrategy;
 import com.coherentsolutions.aqa.web.makarevich.webdriver.LocalWebDriverStrategy;
+import com.coherentsolutions.aqa.web.makarevich.webdriver.SaurceLabsWebDriverStrategy;
 import com.coherentsolutions.aqa.web.makarevich.webdriver.WebDriverContext;
+import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 
+@Slf4j
 @Listeners({io.qameta.allure.testng.AllureTestNg.class, TestListener.class})
 public class TestBase {
     private WebDriver driver;
@@ -25,6 +30,9 @@ public class TestBase {
         switch (Configuration.DRIVER_STRATEGY.toUpperCase()) {
             case "GRID":
                 WebDriverContext.setWebDriverStrategy(new GridWebDriverStrategy());
+                break;
+            case "SAURCELABS":
+                WebDriverContext.setWebDriverStrategy(new SaurceLabsWebDriverStrategy());
                 break;
             case "LOCAL":
             default:
@@ -44,6 +52,11 @@ public class TestBase {
 
     @AfterClass(alwaysRun = true)
     protected void tearDown() {
+        Capabilities cap = ((RemoteWebDriver) WebDriverUtils.getDriver()).getCapabilities();
+        log.info("Browser: " + cap.getBrowserName() + ", " +
+                "Browser Version: " + cap.getBrowserVersion() + ", " +
+                "OS: " + cap.getPlatformName().toString()
+        );
         WebDriverUtils.closeDriver();
     }
 

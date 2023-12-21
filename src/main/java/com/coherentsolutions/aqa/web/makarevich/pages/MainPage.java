@@ -11,7 +11,7 @@ import static com.coherentsolutions.aqa.web.makarevich.constants.UrlConstants.MA
 public class MainPage extends PageBase {
     MagentoHeader header;
 
-    protected MainPage(WebDriver driver) {
+    public MainPage(WebDriver driver) {
         super(driver);
         header = new MagentoHeader(driver);
     }

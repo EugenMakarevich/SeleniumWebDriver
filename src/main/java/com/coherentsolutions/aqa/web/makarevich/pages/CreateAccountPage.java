@@ -22,13 +22,13 @@ public class CreateAccountPage extends PageBase {
         super(driver);
     }
 
-    public CreateAccountPage fillInAllRequiredFieldsAndSubmit(String firstName, String lastName, String email, String password, String passwordConfirmation) {
+    public MyAccountPage fillInAllRequiredFieldsAndSubmit(String firstName, String lastName, String email, String password, String passwordConfirmation) {
         firstNameField.sendKeys(firstName);
         lastNameField.sendKeys(lastName);
         emailAddressField.sendKeys(email);
         passwordField.sendKeys(password);
         passwordConfirmationField.sendKeys(passwordConfirmation);
         createAccountButton.click();
-        return this;
+        return new MyAccountPage(driver);
     }
 }

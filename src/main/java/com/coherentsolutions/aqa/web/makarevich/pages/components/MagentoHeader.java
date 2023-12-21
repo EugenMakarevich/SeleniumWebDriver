@@ -9,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 public class MagentoHeader extends ComponentBase {
     @FindBy(css = "div.header ul.header li:last-of-type")
     private WebElement createAccountLink;
+    @FindBy(css = "header span.logged-in")
+    private WebElement greetWelcomeText;
 
     public MagentoHeader(WebDriver driver) {
         super(driver);
@@ -18,5 +20,9 @@ public class MagentoHeader extends ComponentBase {
     public CreateAccountPage clickCreateAccountLink() {
         createAccountLink.click();
         return new CreateAccountPage(driver);
+    }
+
+    public boolean isGreetWelcomeTextDisplayed() {
+        return greetWelcomeText.isDisplayed();
     }
 }

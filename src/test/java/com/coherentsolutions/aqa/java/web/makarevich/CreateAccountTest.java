@@ -4,11 +4,17 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CreateAccountTest extends TestBase {
     @DataProvider(name = "createAccountData")
     public static Object[][] createAccountData() {
+        String timestamp = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
+
         return new Object[][]{
-                {"Eugen", "Makarevich", "eugenmakarevich@gmail.com", "Password123", "Password123"}
+                //{"Eugen", "Makarevich", "eugenmakarevich@gmail.com", "Password123", "Password123"},//TODO: for test, delete
+                {"AutoFirstName" + timestamp, "AutoLastName" + timestamp, "autouser" + timestamp + "@gmail.com", "Password123", "Password123"}
         };
     }
 
@@ -17,7 +23,12 @@ public class CreateAccountTest extends TestBase {
         mainPage
                 .open()
                 .getHeader().clickCreateAccountLink()
-                .fillInAllRequiredFieldsAndSubmit(firstName, lastName, email, password, passwordConfirmation);
-        Assert.assertTrue(myAccountPage.getHeader().isGreetWelcomeTextDisplayed(), "Greet welcome text is not displayed");
+                .fillInRequiredFieldsAndSubmit(firstName, lastName, email, password, passwordConfirmation);
+        Assert.assertEquals(driver().getTitle(), "My Account", "Title of the page is different from expected");
+
+        String contactInformation = createAccountPage.getContactInformation();
+        String firstLastName = createAccountPage.getFirstLastName(contactInformation);
+        String expectedFirstLastName = String.format("%s %s", firstName, lastName);
+        Assert.assertEquals(firstLastName, expectedFirstLastName, "First and Last Name is not correct");
     }
 }

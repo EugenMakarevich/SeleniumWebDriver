@@ -17,12 +17,14 @@ public class CreateAccountPage extends PageBase {
     private WebElement passwordConfirmationField;
     @FindBy(css = "button.submit")
     private WebElement createAccountButton;
+    @FindBy(css = ".box-information .box-content")
+    private WebElement contactInformationText;
 
     public CreateAccountPage(WebDriver driver) {
         super(driver);
     }
 
-    public MyAccountPage fillInAllRequiredFieldsAndSubmit(String firstName, String lastName, String email, String password, String passwordConfirmation) {
+    public MyAccountPage fillInRequiredFieldsAndSubmit(String firstName, String lastName, String email, String password, String passwordConfirmation) {
         firstNameField.sendKeys(firstName);
         lastNameField.sendKeys(lastName);
         emailAddressField.sendKeys(email);
@@ -30,5 +32,14 @@ public class CreateAccountPage extends PageBase {
         passwordConfirmationField.sendKeys(passwordConfirmation);
         createAccountButton.click();
         return new MyAccountPage(driver);
+    }
+
+    public String getContactInformation() {
+        return contactInformationText.getText();
+    }
+
+    public String getFirstLastName(String contactInformation) {
+        String[] lines = contactInformation.split("\n");
+        return lines[0];
     }
 }

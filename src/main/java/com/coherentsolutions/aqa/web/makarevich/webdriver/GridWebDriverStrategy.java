@@ -17,6 +17,7 @@ public class GridWebDriverStrategy implements WebDriverStrategy {
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("browserName", Configuration.BROWSER);
         cap.setCapability("platformName", Configuration.PLATFORM);
+
         WebDriver driver;
 
         try {
@@ -24,6 +25,7 @@ public class GridWebDriverStrategy implements WebDriverStrategy {
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(LONG_TIMEOUT);
         WebDriverUtils.setWebDriver(driver);

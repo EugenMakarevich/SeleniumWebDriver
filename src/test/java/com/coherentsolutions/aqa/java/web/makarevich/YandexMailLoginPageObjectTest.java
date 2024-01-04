@@ -26,6 +26,6 @@ public class YandexMailLoginPageObjectTest extends TestBase {
         Assert.assertTrue(yandexMailInboxPage.getHeader().isAccountNameDisplayed(),"Account name is not displayed!");
 
         String actualUsername = yandexMailInboxPage.getHeader().getAccountName();
-        Assert.assertEquals(YANDEX_MAIL_USERNAME_2, actualUsername, "Username does not match with displayed user account name!");
+        Assert.assertEquals(actualUsername, YANDEX_MAIL_USERNAME_2, "Username does not match with displayed user account name!");
     }
 }

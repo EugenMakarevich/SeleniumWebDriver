@@ -35,11 +35,13 @@ public class SaurceLabsWebDriverStrategy implements WebDriverStrategy {
         caps.setCapability("sauce:options", sauceOptions);
 
         WebDriver driver;
+
         try {
             driver = new RemoteWebDriver(new URL("https://ondemand.us-west-1.saucelabs.com:443/wd/hub"), caps);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(LONG_TIMEOUT);
         WebDriverUtils.setWebDriver(driver);

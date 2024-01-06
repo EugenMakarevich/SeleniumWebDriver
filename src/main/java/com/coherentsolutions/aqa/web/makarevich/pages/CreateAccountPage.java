@@ -24,12 +24,12 @@ public class CreateAccountPage extends PageBase {
         super(driver);
     }
 
-    public MyAccountPage fillInRequiredFieldsAndSubmit(String firstName, String lastName, String email, String password, String passwordConfirmation) {
+    public MyAccountPage fillInRequiredFieldsAndSubmit(String firstName, String lastName, String email, String password) {
         firstNameField.sendKeys(firstName);
         lastNameField.sendKeys(lastName);
         emailAddressField.sendKeys(email);
         passwordField.sendKeys(password);
-        passwordConfirmationField.sendKeys(passwordConfirmation);
+        passwordConfirmationField.sendKeys(password);
         createAccountButton.click();
         return new MyAccountPage(driver);
     }

@@ -12,5 +12,6 @@ public class UrlConstants {
     public static final String LOADING_DATA_DYNAMICALLY_URL = UrlUtils.getProperty("loadingdatadynamically.url");
     public static final String PROGRESS_BAR_URL = UrlUtils.getProperty("progressbar.url");
     public static final String TABLE_TEST_URL = UrlUtils.getProperty("tabletest.url");
-    public static final String MAGENTO_MAIN_PAGE = UrlUtils.getProperty("magento.mainpage.url");
+    public static final String MAGENTO_MAIN_PAGE_URL = UrlUtils.getProperty("magento.mainpage.url");
+    public static final String ADD_NEW_ADDRESS_PAGE_URL = UrlUtils.getProperty("magento.addnewaddress.url");
 }

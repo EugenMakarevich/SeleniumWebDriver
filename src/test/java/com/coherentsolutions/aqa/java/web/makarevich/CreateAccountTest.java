@@ -14,16 +14,16 @@ public class CreateAccountTest extends TestBase {
 
         return new Object[][]{
                 //{"Eugen", "Makarevich", "eugenmakarevich@gmail.com", "Password123", "Password123"},//TODO: for test, delete
-                {"AutoFirstName" + timestamp, "AutoLastName" + timestamp, "autouser" + timestamp + "@gmail.com", "Password123", "Password123"}
+                {"AutoFirstName" + timestamp, "AutoLastName" + timestamp, "autouser" + timestamp + "@gmail.com", "Password123"}
         };
     }
 
     @Test(dataProvider = "createAccountData")
-    public void testCreateAccount(String firstName, String lastName, String email, String password, String passwordConfirmation) {
+    public void testCreateAccount(String firstName, String lastName, String email, String password) {
         mainPage
                 .open()
                 .getHeader().clickCreateAccountLink()
-                .fillInRequiredFieldsAndSubmit(firstName, lastName, email, password, passwordConfirmation);
+                .fillInRequiredFieldsAndSubmit(firstName, lastName, email, password);
         Assert.assertEquals(driver().getTitle(), "My Account", "Title of the page is different from expected");
 
         String contactInformation = createAccountPage.getContactInformation();

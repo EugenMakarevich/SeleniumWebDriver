@@ -1,5 +1,6 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
+import com.coherentsolutions.aqa.web.makarevich.model.Address;
 import com.coherentsolutions.aqa.web.makarevich.services.AddressService;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -7,6 +8,7 @@ import org.testng.annotations.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.MAGENTO_EMAIL;
 import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.MAGENTO_PASSWORD;
@@ -34,10 +36,7 @@ public class AddNewAddressTest extends TestBase {
                 .fillInRequiredFieldsAndSave(phone, address, city, zip);
         Assert.assertEquals(driver().getTitle(), "Address Book", "Title of the page is different from expected");
 
-        //NullPointerException here
-        //Because of the wrong driver
-        //Because of the wrong locator
-        //Because Page Factory is not applied
-        new AddressService(driver()).getAddressDataFromPage();
+        List<Address> addresses = new AddressService(driver()).getAddressDataFromAllPages();
+        Assert.assertFalse(addresses.isEmpty(), "Address list is empty");
     }
 }

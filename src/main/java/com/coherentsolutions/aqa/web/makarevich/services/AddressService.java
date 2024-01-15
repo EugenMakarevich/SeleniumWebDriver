@@ -1,6 +1,7 @@
 package com.coherentsolutions.aqa.web.makarevich.services;
 
 import com.coherentsolutions.aqa.web.makarevich.model.Address;
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,11 +11,13 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class AddressService {
     @FindBy(css = "#additional-addresses-table tbody tr")
     private List<WebElement> rows;
+    @FindBy(css = "a.next")
+    private WebElement nextButton;
     private List<Address> addresses = new ArrayList<>();
-
     protected WebDriver driver;
 
     public AddressService(WebDriver driver) {
@@ -39,9 +42,19 @@ public class AddressService {
 
             addresses.add(address);
         }
+    }
 
-        for (Address address : addresses) {
-            System.out.println(address);
+    public List<Address> getAddressDataFromAllPages() {
+        while (true) {
+            getAddressDataFromPage();
+
+            //Check if there's a next page and navigate to it
+            if (!driver.findElements(By.cssSelector("a.next")).isEmpty()) {
+                nextButton.click();
+            } else {
+                break; //No more pages
+            }
         }
+        return addresses;
     }
 }

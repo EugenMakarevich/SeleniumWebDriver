@@ -7,11 +7,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.List;
-import java.util.Random;
-
 @Slf4j
 public class AddNewAddressPage extends PageBase {
+    @FindBy(id = "firstname")
+    private WebElement firstNameField;
+    @FindBy(id = "lastname")
+    private WebElement lastNameField;
     @FindBy(id = "telephone")
     private WebElement phoneField;
     @FindBy(id = "street_1")
@@ -32,26 +33,18 @@ public class AddNewAddressPage extends PageBase {
     }
 
     @Step("Fill in all required fields and Save new address")
-    public AddressBookPage fillInRequiredFieldsAndSave(String phone, String address, String city, String zip) {
+    public AddressBookPage fillInRequiredFieldsAndSave(String firstName, String lastName, String phone, String street, String city, String state, String zip, String country) {
+        firstNameField.clear();
+        firstNameField.sendKeys(firstName);
+        lastNameField.clear();
+        lastNameField.sendKeys(lastName);
         phoneField.sendKeys(phone);
-        streetAddressFirstField.sendKeys(address);
+        streetAddressFirstField.sendKeys(street);
         cityField.sendKeys(city);
-        selectRandomOptionFromDropdown(stateDropdown);
+        new Select(stateDropdown).selectByVisibleText(state);
         zipField.sendKeys(zip);
+        new Select(countryDropdown).selectByVisibleText(country);
         saveAddressButton.click();
         return new AddressBookPage(driver);
-    }
-
-    private void selectRandomOptionFromDropdown(WebElement dropdownElement) {
-        Select dropdown = new Select(dropdownElement);
-        List<WebElement> options = dropdown.getOptions();
-
-        if (!options.isEmpty()) {
-            int randomIndex = new Random().nextInt(options.size());
-            String randomOptionValue = options.get(randomIndex).getAttribute("value");
-            dropdown.selectByValue(randomOptionValue);
-        } else {
-            log.info("No options available in the dropdown.");
-        }
     }
 }

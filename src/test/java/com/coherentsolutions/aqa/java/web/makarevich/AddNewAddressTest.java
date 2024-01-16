@@ -19,12 +19,12 @@ public class AddNewAddressTest extends TestBase {
         String timestamp = new SimpleDateFormat("mmssSSS").format(new Date());
 
         return new Object[][]{
-                {timestamp, "Address " + timestamp, "City " + timestamp, "12345"}
+                {"FirstName" + timestamp, "LastName" + timestamp, timestamp, "Street " + timestamp, "City " + timestamp, "Texas", "12345", "United States"}
         };
     }
 
     @Test(dataProvider = "addNewAddress")
-    public void testAddNewAddress(String phone, String address, String city, String zip) {
+    public void testAddNewAddress(String firstName, String lastName, String phone, String street, String city, String state, String zip, String country) {
         mainPage
                 .open()
                 .getHeader().clickSignInLink()
@@ -33,10 +33,21 @@ public class AddNewAddressTest extends TestBase {
 
         myAccountPage
                 .openAddNewAddressPage()
-                .fillInRequiredFieldsAndSave(phone, address, city, zip);
+                .fillInRequiredFieldsAndSave(firstName, lastName, phone, street, city, state, zip, country);
         Assert.assertEquals(driver().getTitle(), "Address Book", "Title of the page is different from expected");
 
         List<Address> addresses = new AddressService(driver()).getAddressDataFromAllPages();
         Assert.assertFalse(addresses.isEmpty(), "Address list is empty");
+
+        Address address = new Address();
+        address.setFirstName(firstName);
+        address.setLastName(lastName);
+        address.setPhone(phone);
+        address.setStreetAddress(street);
+        address.setCity(city);
+        address.setState(state);
+        address.setZipCode(zip);
+        address.setCountry(country);
+        Assert.assertTrue(addresses.contains(address), "Address is not added");
     }
 }

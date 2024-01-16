@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import static com.coherentsolutions.aqa.web.makarevich.constants.TimeOutConstants.LONG_TIMEOUT;
-
 public class LocalWebDriverStrategy implements WebDriverStrategy {
     @Override
     public void setStrategy() {
@@ -23,7 +21,7 @@ public class LocalWebDriverStrategy implements WebDriverStrategy {
         }
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(LONG_TIMEOUT);
+        //driver.manage().timeouts().implicitlyWait(SHORT_TIMEOUT);
         WebDriverUtils.setWebDriver(driver);
     }
 }

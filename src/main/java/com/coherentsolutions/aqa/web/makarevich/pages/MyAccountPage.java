@@ -21,13 +21,14 @@ public class MyAccountPage extends MainPage {
     }
 
     @Step("Open Wishlist page")
-    public WhishlistPage openWishlistPage() {
+    public MyWhishListPage openWishlistPage() {
         driver.get(WHISHLIST_PAGE_URL);
-        return new WhishlistPage(driver);
+        return new MyWhishListPage(driver);
     }
 
     @Step("Open Women -> Top -> Jackets page")
-    public void openWomenTopJacketsPage() {
+    public ProductItemPage openWomenTopJacketsPage() {
         driver.get(WOMEN_TOP_JACKETS_PAGE);
+        return new ProductItemPage(driver);
     }
 }

@@ -27,6 +27,8 @@ public class TestBase {
     CreateAccountPage createAccountPage;
     MyAccountPage myAccountPage;
     AddressBookPage addressBookPage;
+    ProductPage productPage;
+    MyWhishListPage myWhishListPage;
 
     protected static void setWebDriverStrategy() {
         switch (Configuration.DRIVER_STRATEGY.toUpperCase()) {
@@ -54,6 +56,8 @@ public class TestBase {
         createAccountPage = new CreateAccountPage(driver);
         myAccountPage = new MyAccountPage(driver);
         addressBookPage = new AddressBookPage(driver);
+        productPage = new ProductPage(driver);
+        myWhishListPage = new MyWhishListPage(driver);
     }
 
     @AfterClass(alwaysRun = true)

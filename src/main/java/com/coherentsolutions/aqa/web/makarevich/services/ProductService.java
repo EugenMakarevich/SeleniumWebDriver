@@ -1,25 +1,20 @@
 package com.coherentsolutions.aqa.web.makarevich.services;
 
 import com.coherentsolutions.aqa.web.makarevich.model.Product;
+import com.coherentsolutions.aqa.web.makarevich.pages.ProductItemPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ProductService {
-    @FindBy(css = "item product product-item")
-    private List<WebElement> productItems;
-    @FindBy(css = ".product a.product-item-link")
-    private WebElement productName;
-    @FindBy(css = ".product .price")
-    private WebElement productPrice;
-    @FindBy(css = ".product a.product-item-link")
-    private List<WebElement> productLinks;
+    // ToDo: get rid of all FindBy annotations,
+    // just move it to an appropriate page
+    // Put here only stuff that are related to work with Product object
+
     private List<Product> products = new ArrayList<>();
 
     protected WebDriver driver;
@@ -30,6 +25,8 @@ public class ProductService {
     }
 
     public void getProductsFromPage() {
+        List<WebElement> productItems = new ProductItemPage(driver).getProductItems();
+
         for (WebElement productItem : productItems) {
             Product product = new Product();
 
@@ -41,14 +38,5 @@ public class ProductService {
 
             products.add(product);
         }
-    }
-
-    private WebElement getRandomProductLinkFromPage() {
-        int index = new Random().nextInt(productLinks.size());
-        return productLinks.get(index);
-    }
-
-    public void goToRandomProductPage() {
-        getRandomProductLinkFromPage().click();
     }
 }

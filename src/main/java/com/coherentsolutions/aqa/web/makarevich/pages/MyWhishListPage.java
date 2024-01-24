@@ -6,11 +6,11 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class WhishlistPage extends PageBase {
-    @FindBy(css = ".products-grid .product-items .product-item")
+public class MyWhishListPage extends PageBase {
+    @FindBy(css = ".wishlist .product-items .product-item")
     private List<WebElement> whishlistItem;
 
-    protected WhishlistPage(WebDriver driver) {
+    public MyWhishListPage(WebDriver driver) {
         super(driver);
     }
 

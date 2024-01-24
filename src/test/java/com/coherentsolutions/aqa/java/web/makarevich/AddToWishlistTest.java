@@ -1,6 +1,5 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
-import com.coherentsolutions.aqa.web.makarevich.services.ProductService;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,10 +16,11 @@ public class AddToWishlistTest extends TestBase {
         Assert.assertEquals(driver().getTitle(), "Home Page", "Title of the page is different from expected");
 
         myAccountPage
-                .openWomenTopJacketsPage();
+                .openWomenTopJacketsPage()
+                .goToRandomProductPage()
+                .clickOnAddProductToWishListLink();
+        Assert.assertFalse(myWhishListPage.isWhishlistEmpty(), "Wish list is empty");
 
-        ProductService productService = new ProductService(driver());
-        productService.goToRandomProductPage();
 
         //Navigate to wishlist: https://magento.softwaretestingboard.com/wishlist/
         //Check if it's empty or not

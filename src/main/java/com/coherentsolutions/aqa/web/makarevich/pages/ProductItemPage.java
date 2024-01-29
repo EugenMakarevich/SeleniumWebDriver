@@ -10,7 +10,7 @@ import java.util.Random;
 
 @Getter
 public class ProductItemPage extends PageBase {
-    @FindBy(css = "item product product-item")
+    @FindBy(css = ".item product .product-item")
     private List<WebElement> productItems;
     @FindBy(css = ".product a.product-item-link")
     private WebElement productName;

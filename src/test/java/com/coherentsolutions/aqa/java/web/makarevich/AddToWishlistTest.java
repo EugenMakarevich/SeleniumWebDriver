@@ -1,7 +1,11 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
+import com.coherentsolutions.aqa.web.makarevich.model.Product;
+import com.coherentsolutions.aqa.web.makarevich.services.ProductService;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.MAGENTO_EMAIL;
 import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.MAGENTO_PASSWORD;
@@ -17,19 +21,14 @@ public class AddToWishlistTest extends TestBase {
 
         myAccountPage
                 .openWomenTopJacketsPage()
-                .goToRandomProductPage()
-                .clickOnAddProductToWishListLink();
+                .goToRandomProductPage();
+        Product product = productPage.getProductDataFromPage();
+        Assert.assertNotNull(product, "The Product object is empty");
+
+        productPage.clickOnAddProductToWishListLink();
         Assert.assertFalse(myWhishListPage.isWhishlistEmpty(), "Wish list is empty");
 
-
-        //Navigate to wishlist: https://magento.softwaretestingboard.com/wishlist/
-        //Check if it's empty or not
-        //If it is not empty Clear all the items so wishlist is empty:
-        //Hover on the element
-        //Verify the remove link is displayed
-        //Click on the remove link
-        //Navigate to the category Women -> Tops -> Jackets
-        //Collect all the items on the page
-        //Click on the random one
+        List<Product> wishListItems = new ProductService(driver()).getProductDataFromAllPages();
+        Assert.assertTrue(wishListItems.contains(product), "Wish List does not contain the product");
     }
 }

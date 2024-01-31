@@ -1,11 +1,14 @@
 package com.coherentsolutions.aqa.web.makarevich.pages.components;
 
+import com.coherentsolutions.aqa.web.makarevich.pages.CartPage;
 import com.coherentsolutions.aqa.web.makarevich.pages.CreateAccountPage;
 import com.coherentsolutions.aqa.web.makarevich.pages.LoginPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static com.coherentsolutions.aqa.web.makarevich.constants.UrlConstants.CART_PAGE_URL;
 
 public class MagentoHeader extends ComponentBase {
     @FindBy(css = "div.header ul.header li:last-of-type")
@@ -31,7 +34,9 @@ public class MagentoHeader extends ComponentBase {
         return new LoginPage(driver);
     }
 
-    public boolean isGreetWelcomeTextDisplayed() {
-        return greetWelcomeText.isDisplayed();
+    @Step("Go to Cart")
+    public CartPage goToCart() {
+        driver.get(CART_PAGE_URL);
+        return new CartPage(driver);
     }
 }

@@ -1,5 +1,6 @@
 package com.coherentsolutions.aqa.web.makarevich.pages;
 
+import com.coherentsolutions.aqa.web.makarevich.model.Product;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.coherentsolutions.aqa.web.makarevich.constants.TimeOutConstants.MEDIUM_TIMEOUT;
@@ -29,10 +31,44 @@ public class CartPage extends PageBase {
     private WebElement cartSubtotal;
     @FindBy(css = ".grand .price")
     private WebElement cartOrderTotal;
+    private List<Product> products = new ArrayList<>();
 
 
     public CartPage(WebDriver driver) {
         super(driver);
+    }
+
+    @Step("Get product from the cart")
+    private Product getProduct(WebElement productItem) {
+        Product product = new Product();
+        WebElement productName = productItem.findElement(By.cssSelector(".product-item-name a"));
+        WebElement productPrice = productItem.findElement(By.cssSelector(".item-info .price .price-excluding-tax"));
+        product.setName(productName.getText());
+        product.setPrice(productPrice.getText());
+        return product;
+    }
+
+    @Step("Get products from the cart page")
+    private List<Product> getProductsFromPage() {
+        for (WebElement productItem : productList) {
+            products.add(getProduct(productItem));
+        }
+        return products;
+    }
+
+    @Step("Get products from all cart pages")
+    public List<Product> getProductsFromAllPages() {
+        while (true) {
+            getProductsFromPage();
+
+            //Check if there's a next page and navigate to it
+            if (!driver.findElements(By.cssSelector("a.next")).isEmpty()) {
+                driver.findElement(By.cssSelector("a.next")).click();
+            } else {
+                break; //No more pages
+            }
+        }
+        return products;
     }
 
     @Step("Get product quantity")
@@ -48,6 +84,16 @@ public class CartPage extends PageBase {
     @Step("Get product quantity from all pages")
     public int getPrdQuantityFromAllPages() {
         int prdQuantity = 0;
+
+        //Go back to the firs page
+        while (true) {
+            if (!driver.findElements(By.className("previous")).isEmpty()) {
+                driver.findElement(By.className("previous")).click();
+            } else {
+                break;
+            }
+        }
+
         while (true) {
             prdQuantity += getPrdQuantity();
 
@@ -59,14 +105,6 @@ public class CartPage extends PageBase {
             }
         }
 
-        //Go back to the firs page
-        while (true) {
-            if (!driver.findElements(By.className("previous")).isEmpty()) {
-                driver.findElement(By.className("previous")).click();
-            } else {
-                break;
-            }
-        }
         return prdQuantity;
     }
 
@@ -83,6 +121,16 @@ public class CartPage extends PageBase {
     @Step("Get product quantity from all pages")
     public double getPrdSubtotalFromAllPages() {
         double prdSubtotal = 0;
+
+        //Go back to the firs page
+        while (true) {
+            if (!driver.findElements(By.className("previous")).isEmpty()) {
+                driver.findElement(By.className("previous")).click();
+            } else {
+                break;
+            }
+        }
+
         while (true) {
             prdSubtotal += getPrdSubtotalFromPage();
 
@@ -91,15 +139,6 @@ public class CartPage extends PageBase {
                 driver.findElement(By.cssSelector("a.next")).click();
             } else {
                 break; //No more pages
-            }
-        }
-
-        //Go back to the firs page
-        while (true) {
-            if (!driver.findElements(By.className("previous")).isEmpty()) {
-                driver.findElement(By.className("previous")).click();
-            } else {
-                break;
             }
         }
         return prdSubtotal;

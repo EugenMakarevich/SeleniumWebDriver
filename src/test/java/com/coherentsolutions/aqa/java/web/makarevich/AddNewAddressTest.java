@@ -33,12 +33,14 @@ public class AddNewAddressTest extends TestBase {
 
         myAccountPage
                 .openAddNewAddressPage()
+                //Todo: it is better to return Address object here
                 .fillInRequiredFieldsAndSave(firstName, lastName, phone, street, city, state, zip, country);
         Assert.assertEquals(driver().getTitle(), "Address Book", "Title of the page is different from expected");
 
         List<Address> addresses = new AddressService(driver()).getAddressDataFromAllPages();
         Assert.assertFalse(addresses.isEmpty(), "Address list is empty");
 
+        //ToDo: Add method that creates fake Address using Faker
         Address address = new Address();
         address.setFirstName(firstName);
         address.setLastName(lastName);

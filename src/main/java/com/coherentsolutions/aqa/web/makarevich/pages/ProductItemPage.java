@@ -1,11 +1,14 @@
 package com.coherentsolutions.aqa.web.makarevich.pages;
 
+import com.coherentsolutions.aqa.web.makarevich.model.Product;
+import com.coherentsolutions.aqa.web.makarevich.services.ProductService;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -33,17 +36,20 @@ public class ProductItemPage extends PageBase {
     }
 
     @Step("Add specified number of products ({0}) to the cart")
-    public ProductItemPage addProductToCard(int prodNum) {
+    public List<Product> addProductToCard(int prodNum) {
+        List<Product> products = new ArrayList<>();
         for (int i = 0; i < prodNum; i++) {
             WebElement productLink = getRandomProductLinkFromPage();
             productLink.click();
             //TODO: Should I add the page to PageBase to prevent initialization here?
             ProductPage productPage = new ProductPage(driver);
+            ProductService productService = new ProductService(driver);
+            products.add(productService.getProduct());
             productPage.addProductToCart();
             getBreadcrumbs().goToCategory();
             productLinks.remove(productLink);
         }
-        return new ProductItemPage(driver);
+        return products;
     }
 
     @Step("Get random product link")

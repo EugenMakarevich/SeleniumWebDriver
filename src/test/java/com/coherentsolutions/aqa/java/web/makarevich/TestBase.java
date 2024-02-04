@@ -28,6 +28,7 @@ public class TestBase {
     MyAccountPage myAccountPage;
     AddressBookPage addressBookPage;
     ProductPage productPage;
+    ProductItemPage productItemPage;
     MyWhishListPage myWhishListPage;
     CartPage cartPage;
 
@@ -58,6 +59,7 @@ public class TestBase {
         myAccountPage = new MyAccountPage(driver);
         addressBookPage = new AddressBookPage(driver);
         productPage = new ProductPage(driver);
+        productItemPage = new ProductItemPage(driver);
         myWhishListPage = new MyWhishListPage(driver);
         cartPage = new CartPage(driver);
     }

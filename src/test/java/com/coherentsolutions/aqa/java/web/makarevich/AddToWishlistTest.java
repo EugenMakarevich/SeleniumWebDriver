@@ -11,7 +11,7 @@ import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.M
 import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.MAGENTO_PASSWORD;
 
 public class AddToWishlistTest extends TestBase {
-    @Test
+    @Test(groups = "Online Store")
     public void testAddToWishlist() {
         mainPage
                 .open()

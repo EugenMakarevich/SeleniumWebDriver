@@ -9,7 +9,7 @@ import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.M
 public class AddProductToCartTest extends TestBase {
     int prodNum = 3; //Number of products to add to cart
 
-    @Test
+    @Test(groups = "Online Store")
     public void TestAddProductToCartTest() {
         mainPage
                 .open()

@@ -7,7 +7,7 @@ import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.M
 import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.MAGENTO_PASSWORD;
 
 public class LoginTest extends TestBase {
-    @Test
+    @Test(groups = "Online Store")
     public void testLogin() {
         mainPage
                 .open()

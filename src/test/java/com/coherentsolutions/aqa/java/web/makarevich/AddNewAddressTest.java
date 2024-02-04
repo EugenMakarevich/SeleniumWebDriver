@@ -23,7 +23,7 @@ public class AddNewAddressTest extends TestBase {
         };
     }
 
-    @Test(dataProvider = "addNewAddress")
+    @Test(dataProvider = "addNewAddress", groups = "Online Store")
     public void testAddNewAddress(String firstName, String lastName, String phone, String street, String city, String state, String zip, String country) {
         mainPage
                 .open()

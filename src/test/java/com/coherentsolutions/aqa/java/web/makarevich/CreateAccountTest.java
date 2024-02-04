@@ -17,7 +17,7 @@ public class CreateAccountTest extends TestBase {
         };
     }
 
-    @Test(dataProvider = "createAccountData")
+    @Test(dataProvider = "createAccountData", groups = "Online Store")
     public void testCreateAccount(String firstName, String lastName, String email, String password) {
         mainPage
                 .open()

@@ -13,7 +13,6 @@ public class CreateAccountTest extends TestBase {
         String timestamp = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
 
         return new Object[][]{
-                //{"Eugen", "Makarevich", "eugenmakarevich@gmail.com", "Password123", "Password123"},//TODO: for test, delete
                 {"AutoFirstName" + timestamp, "AutoLastName" + timestamp, "autouser" + timestamp + "@gmail.com", "Password123"}
         };
     }
@@ -29,6 +28,6 @@ public class CreateAccountTest extends TestBase {
         String contactInformation = createAccountPage.getContactInformation();
         String firstLastName = createAccountPage.getFirstLastName(contactInformation);
         String expectedFirstLastName = String.format("%s %s", firstName, lastName);
-        Assert.assertEquals(firstLastName, expectedFirstLastName, "First and Last Name is not correct");
+        Assert.assertEquals(firstLastName, expectedFirstLastName, "First and Last Name is different from expected");
     }
 }

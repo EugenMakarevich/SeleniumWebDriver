@@ -1,19 +1,13 @@
 package com.coherentsolutions.aqa.web.makarevich.pages;
 
+import io.qameta.allure.Step;
 import lombok.Getter;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.Random;
-
-import static com.coherentsolutions.aqa.web.makarevich.constants.TimeOutConstants.SHORT_TIMEOUT;
 
 @Getter
 public class ProductItemPage extends PageBase {
@@ -32,37 +26,29 @@ public class ProductItemPage extends PageBase {
         super(driver);
     }
 
+    @Step("Click on random product and navigate to product page")
     public ProductPage goToRandomProductPage() {
         getRandomProductLinkFromPage().click();
         return new ProductPage(driver);
     }
 
+    @Step("Add specified number of products ({0}) to the cart")
     public ProductItemPage addProductToCard(int prodNum) {
         for (int i = 0; i < prodNum; i++) {
             WebElement productLink = getRandomProductLinkFromPage();
             productLink.click();
+            //TODO: Should I add the page to PageBase to prevent initialization here?
             ProductPage productPage = new ProductPage(driver);
             productPage.addProductToCart();
-            productPage.goToCategory();
+            getBreadcrumbs().goToCategory();
             productLinks.remove(productLink);
         }
         return new ProductItemPage(driver);
     }
 
+    @Step("Get random product link")
     private WebElement getRandomProductLinkFromPage() {
         int index = new Random().nextInt(productLinks.size());
         return productLinks.get(index);
-    }
-
-    private void hoverOnProduct(WebElement productLink) {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(productLink).perform();
-        WebDriverWait wait = new WebDriverWait(driver, SHORT_TIMEOUT, Duration.ofMillis(800));
-        //wait.until(ExpectedConditions.visibilityOf(addToCardButton));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".products-grid .product-items .product-item .tocart")));
-    }
-
-    private void clickOnCardIcon() {
-        addToCardButton.click();
     }
 }

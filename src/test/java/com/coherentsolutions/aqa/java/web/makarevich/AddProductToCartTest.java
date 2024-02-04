@@ -18,9 +18,16 @@ public class AddProductToCartTest extends TestBase {
         Assert.assertEquals(driver().getTitle(), "Home Page", "Title of the page is different from expected");
 
         myAccountPage
+                .getHeader().goToCart();
+        int currentPrdQuantityAdded = cartPage.getPrdQuantityFromAllPages();
+
+        myAccountPage
                 .openWomenTopJacketsPage()
                 .addProductToCard(prodNum)
                 .getHeader().goToCart();
-        Assert.assertEquals(cartPage.getProductList().size(), prodNum, "Product in the cart does not equal to " + prodNum);
+        int actualProdQuantity = cartPage.getPrdQuantityFromAllPages();
+        int expectedProdQuantity = prodNum + currentPrdQuantityAdded;
+        Assert.assertEquals(actualProdQuantity, expectedProdQuantity, "Number of products in the cart does not match");
+        Assert.assertTrue(cartPage.isCartSubtotalValid(), "Subtotal of products does not much with cart total");
     }
 }

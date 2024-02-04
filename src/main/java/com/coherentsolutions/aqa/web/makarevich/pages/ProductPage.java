@@ -2,20 +2,24 @@ package com.coherentsolutions.aqa.web.makarevich.pages;
 
 import com.coherentsolutions.aqa.web.makarevich.model.Product;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Random;
+
+import static com.coherentsolutions.aqa.web.makarevich.constants.TimeOutConstants.MEDIUM_TIMEOUT;
 
 public class ProductPage extends PageBase {
     @FindBy(css = ".swatch-option.text")
     private List<WebElement> sizeOptions;
     @FindBy(css = ".swatch-option.color")
     private List<WebElement> colorOptions;
-    @FindBy(className = "towishlist")
-    private WebElement toWishlistBtn;
     @FindBy(css = "h1.page-title")
     private WebElement productName;
     @FindBy(css = ".product-info-main .price")
@@ -24,56 +28,61 @@ public class ProductPage extends PageBase {
     private WebElement addProductToWishListLink;
     @FindBy(id = "product-addtocart-button")
     private WebElement addToCartBtn;
-    @FindBy(xpath = "//li[contains(@class, 'item category')][last()]/a")
-    private WebElement categoryBtn;
+    WebDriverWait wait;
 
     public ProductPage(WebDriver driver) {
         super(driver);
+        wait = new WebDriverWait(driver, MEDIUM_TIMEOUT, Duration.ofMillis(200));
     }
 
-    @Step("Get product name")
-    public String getProductName() {
-        return productName.getText();
-    }
-
-    @Step("Get product price")
-    public String getProductPrice() {
-        return productPrice.getText();
-    }
-
-    @Step("Add Product to Wish List")
+    @Step("CLick on Add Product To WishList button")
     public MyWhishListPage clickOnAddProductToWishListLink() {
         addProductToWishListLink.click();
         return new MyWhishListPage(driver);
     }
 
+    @Step("Get Product data from the page")
     public Product getProductDataFromPage() {
         Product product = new Product();
-
-        product.setName(productName.getText());
-        product.setPrice(productPrice.getText());
-
+        product.setName(getProductName());
+        product.setPrice(getProductPrice());
         return product;
     }
 
+    @Step("Choose random size and color and add product to the cart")
     public void addProductToCart() {
         chooseRandomSize();
         chooseRandomColor();
-        addToCartBtn.click();
+        clickOnAddToCartBtn();
     }
 
-    public void chooseRandomSize() {
+    @Step("Get product name")
+    private String getProductName() {
+        return productName.getText();
+    }
+
+    @Step("Get product price")
+    private String getProductPrice() {
+        return productPrice.getText();
+    }
+
+    @Step("Click on Add To Cart button")
+    private void clickOnAddToCartBtn() {
+        addToCartBtn.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".page .messages")));
+    }
+
+    @Step("Choose random size of the product")
+    private void chooseRandomSize() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".swatch-option.text")));
         WebElement randomSize = sizeOptions.get(new Random().nextInt(sizeOptions.size() - 1));
         randomSize.click();
     }
 
-    public void chooseRandomColor() {
+    @Step("Choose random color of the product")
+    private void chooseRandomColor() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".swatch-option.color")));
         WebElement randomColor = colorOptions.get(new Random().nextInt(colorOptions.size() - 1));
         randomColor.click();
-    }
-
-    public ProductItemPage goToCategory() {
-        categoryBtn.click();
-        return new ProductItemPage(driver);
     }
 }

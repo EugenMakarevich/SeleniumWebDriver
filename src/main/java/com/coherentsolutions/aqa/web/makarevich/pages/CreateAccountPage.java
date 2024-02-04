@@ -1,5 +1,6 @@
 package com.coherentsolutions.aqa.web.makarevich.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,6 +25,7 @@ public class CreateAccountPage extends PageBase {
         super(driver);
     }
 
+    @Step("Fill in requered fields and submit account")
     public MyAccountPage fillInRequiredFieldsAndSubmit(String firstName, String lastName, String email, String password) {
         firstNameField.sendKeys(firstName);
         lastNameField.sendKeys(lastName);
@@ -34,10 +36,12 @@ public class CreateAccountPage extends PageBase {
         return new MyAccountPage(driver);
     }
 
+    @Step("Get contact information")
     public String getContactInformation() {
         return contactInformationText.getText();
     }
 
+    @Step("Get First and Last name")
     public String getFirstLastName(String contactInformation) {
         String[] lines = contactInformation.split("\n");
         return lines[0];

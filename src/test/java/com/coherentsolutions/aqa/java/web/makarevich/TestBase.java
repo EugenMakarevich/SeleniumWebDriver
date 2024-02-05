@@ -31,6 +31,7 @@ public class TestBase {
     ProductItemPage productItemPage;
     MyWhishListPage myWhishListPage;
     CartPage cartPage;
+    LoginPage loginPage;
 
     protected static void setWebDriverStrategy() {
         switch (Configuration.DRIVER_STRATEGY.toUpperCase()) {
@@ -62,6 +63,7 @@ public class TestBase {
         productItemPage = new ProductItemPage(driver);
         myWhishListPage = new MyWhishListPage(driver);
         cartPage = new CartPage(driver);
+        loginPage = new LoginPage(driver);
     }
 
     @AfterClass(alwaysRun = true)

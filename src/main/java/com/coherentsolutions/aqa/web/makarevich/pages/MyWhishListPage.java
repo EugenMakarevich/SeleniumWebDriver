@@ -17,10 +17,4 @@ public class MyWhishListPage extends PageBase {
     public boolean isWhishlistEmpty() {
         return whishlistItem.isEmpty();
     }
-
-    public void removeAllItemsFromWishlist() {
-        if (!whishlistItem.isEmpty()) {
-
-        }
-    }
 }

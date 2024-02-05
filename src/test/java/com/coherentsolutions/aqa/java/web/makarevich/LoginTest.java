@@ -12,7 +12,7 @@ public class LoginTest extends TestBase {
         mainPage
                 .open()
                 .getHeader().clickSignInLink()
-                .fillInRequiredFieldsAndSubmit(MAGENTO_EMAIL, MAGENTO_PASSWORD);
+                .login(MAGENTO_EMAIL, MAGENTO_PASSWORD);
         Assert.assertEquals(driver().getTitle(), "Home Page", "Title of the page is different from expected");
     }
 }

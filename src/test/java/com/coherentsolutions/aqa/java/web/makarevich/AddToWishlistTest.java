@@ -13,11 +13,8 @@ import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.M
 public class AddToWishlistTest extends TestBase {
     @Test(groups = "Online Store")
     public void testAddToWishlist() {
-        mainPage
-                .open()
-                .getHeader().clickSignInLink()
-                .fillInRequiredFieldsAndSubmit(MAGENTO_EMAIL, MAGENTO_PASSWORD);
-        Assert.assertEquals(driver().getTitle(), "Home Page", "Title of the page is different from expected");
+        loginPage.login(MAGENTO_EMAIL, MAGENTO_PASSWORD);
+        Assert.assertEquals(driver().getTitle(), "My Account", "Title of the page is different from expected");
 
         myAccountPage
                 .openWomenTopJacketsPage()

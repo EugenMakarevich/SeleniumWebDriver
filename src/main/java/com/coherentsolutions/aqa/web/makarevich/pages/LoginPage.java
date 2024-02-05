@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.coherentsolutions.aqa.web.makarevich.constants.UrlConstants.LOGIN_PAGE_URL;
+
 public class LoginPage extends MainPage {
     @FindBy(id = "email")
     private WebElement emailField;
@@ -17,8 +19,15 @@ public class LoginPage extends MainPage {
         super(driver);
     }
 
-    @Step("Fill in Email and Password fileds and Sign in")
-    public MyAccountPage fillInRequiredFieldsAndSubmit(String email, String password) {
+    @Step("Open Login page")
+    public LoginPage openLoginPage() {
+        driver.get(LOGIN_PAGE_URL);
+        return this;
+    }
+
+    @Step("Open login page, fill in Email and Password filed and Sign in")
+    public MyAccountPage login(String email, String password) {
+        openLoginPage();
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
         signInButton.click();

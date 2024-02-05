@@ -20,7 +20,7 @@ public class AddToWishlistTest extends TestBase {
                 .openWomenTopJacketsPage()
                 .goToRandomProductPage();
         Product product = productPage.getProductDataFromPage();
-        Assert.assertNotNull(product, "The Product object is empty");
+        Assert.assertNotNull(product, "The Product object is NULL");
 
         productPage.clickOnAddProductToWishListLink();
         Assert.assertFalse(myWhishListPage.isWhishlistEmpty(), "Wish list is empty");

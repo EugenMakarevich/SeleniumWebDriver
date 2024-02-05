@@ -1,5 +1,6 @@
 package com.coherentsolutions.aqa.web.makarevich.pages;
 
+import com.coherentsolutions.aqa.web.makarevich.model.Address;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
@@ -32,19 +33,23 @@ public class AddNewAddressPage extends PageBase {
         super(driver);
     }
 
-    @Step("Fill in all required fields and Save new address")
-    public AddressBookPage fillInRequiredFieldsAndSave(String firstName, String lastName, String phone, String street, String city, String state, String zip, String country) {
-        firstNameField.clear();
-        firstNameField.sendKeys(firstName);
-        lastNameField.clear();
-        lastNameField.sendKeys(lastName);
-        phoneField.sendKeys(phone);
-        streetAddressFirstField.sendKeys(street);
-        cityField.sendKeys(city);
-        new Select(stateDropdown).selectByVisibleText(state);
-        zipField.sendKeys(zip);
-        new Select(countryDropdown).selectByVisibleText(country);
+    @Step("Add new address")
+    public AddressBookPage addNewAddress(Address address) {
+        fillAddressFields(address);
         saveAddressButton.click();
         return new AddressBookPage(driver);
+    }
+
+    @Step("Fill in all required fields and Save new address")
+    public void fillAddressFields(Address address) {
+        firstNameField.clear();
+        firstNameField.sendKeys(address.getFirstName());
+        lastNameField.clear();
+        lastNameField.sendKeys(address.getLastName());
+        phoneField.sendKeys(address.getPhone());
+        streetAddressFirstField.sendKeys(address.getStreetAddress());
+        cityField.sendKeys(address.getCity());
+        new Select(stateDropdown).selectByVisibleText(address.getState());
+        zipField.sendKeys(address.getZipCode());
     }
 }

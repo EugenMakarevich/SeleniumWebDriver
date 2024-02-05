@@ -3,6 +3,7 @@ package com.coherentsolutions.aqa.java.web.makarevich;
 import com.coherentsolutions.aqa.web.makarevich.configuration.Configuration;
 import com.coherentsolutions.aqa.web.makarevich.listeners.TestListener;
 import com.coherentsolutions.aqa.web.makarevich.pages.*;
+import com.coherentsolutions.aqa.web.makarevich.services.AddressService;
 import com.coherentsolutions.aqa.web.makarevich.utils.WebDriverUtils;
 import com.coherentsolutions.aqa.web.makarevich.webdriver.GridWebDriverStrategy;
 import com.coherentsolutions.aqa.web.makarevich.webdriver.LocalWebDriverStrategy;
@@ -32,6 +33,7 @@ public class TestBase {
     MyWhishListPage myWhishListPage;
     CartPage cartPage;
     LoginPage loginPage;
+    AddressService addressService;
 
     protected static void setWebDriverStrategy() {
         switch (Configuration.DRIVER_STRATEGY.toUpperCase()) {
@@ -64,6 +66,7 @@ public class TestBase {
         myWhishListPage = new MyWhishListPage(driver);
         cartPage = new CartPage(driver);
         loginPage = new LoginPage(driver);
+        addressService = new AddressService(driver);
     }
 
     @AfterClass(alwaysRun = true)

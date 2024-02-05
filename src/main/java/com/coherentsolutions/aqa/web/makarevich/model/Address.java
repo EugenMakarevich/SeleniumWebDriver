@@ -1,12 +1,14 @@
 package com.coherentsolutions.aqa.web.makarevich.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Address {
     private String firstName;
     private String lastName;

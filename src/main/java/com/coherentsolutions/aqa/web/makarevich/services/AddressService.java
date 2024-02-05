@@ -1,6 +1,7 @@
 package com.coherentsolutions.aqa.web.makarevich.services;
 
 import com.coherentsolutions.aqa.web.makarevich.model.Address;
+import com.github.javafaker.Faker;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Getter
 public class AddressService {
@@ -23,6 +25,20 @@ public class AddressService {
     public AddressService(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+
+    public Address createAddress() {
+        Address address = new Address();
+        Faker faker = new Faker(Locale.US);
+        address.setFirstName(faker.name().firstName());
+        address.setLastName(faker.name().lastName());
+        address.setPhone(faker.phoneNumber().cellPhone());
+        address.setStreetAddress(faker.address().streetAddress());
+        address.setCity(faker.address().city());
+        address.setState(faker.address().state());
+        address.setZipCode(faker.address().zipCode());
+        address.setCountry("United States");
+        return address;
     }
 
     public void getAddressDataFromPage() {

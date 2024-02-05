@@ -9,10 +9,7 @@ import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.M
 public class LoginTest extends TestBase {
     @Test(groups = "Online Store")
     public void testLogin() {
-        mainPage
-                .open()
-                .getHeader().clickSignInLink()
-                .login(MAGENTO_EMAIL, MAGENTO_PASSWORD);
-        Assert.assertEquals(driver().getTitle(), "Home Page", "Title of the page is different from expected");
+        loginPage.login(MAGENTO_EMAIL, MAGENTO_PASSWORD);
+        Assert.assertEquals(driver().getTitle(), "My Account", "Title of the page is different from expected");
     }
 }

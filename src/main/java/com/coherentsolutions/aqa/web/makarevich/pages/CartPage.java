@@ -58,16 +58,12 @@ public class CartPage extends PageBase {
 
     @Step("Get products from all cart pages")
     public List<Product> getProductsFromAllPages() {
-        while (true) {
+        do {
             getProductsFromPage();
+            getPageNavigation().goToNextPage();
 
-            //Check if there's a next page and navigate to it
-            if (!driver.findElements(By.cssSelector("a.next")).isEmpty()) {
-                driver.findElement(By.cssSelector("a.next")).click();
-            } else {
-                break; //No more pages
-            }
-        }
+            // Check if there's a next page
+        } while (!driver.findElements(By.cssSelector("a.next")).isEmpty());
         return products;
     }
 
@@ -84,26 +80,14 @@ public class CartPage extends PageBase {
     @Step("Get product quantity from all pages")
     public int getPrdQuantityFromAllPages() {
         int prdQuantity = 0;
+        getPageNavigation().goToFirstPage();
 
-        //Go back to the firs page
-        while (true) {
-            if (!driver.findElements(By.className("previous")).isEmpty()) {
-                driver.findElement(By.className("previous")).click();
-            } else {
-                break;
-            }
-        }
-
-        while (true) {
+        do {
             prdQuantity += getPrdQuantity();
+            getPageNavigation().goToNextPage();
 
-            //Check if there's a next page and navigate to it
-            if (!driver.findElements(By.cssSelector("a.next")).isEmpty()) {
-                driver.findElement(By.cssSelector("a.next")).click();
-            } else {
-                break; //No more pages
-            }
-        }
+            // Check if there's a next page
+        } while (!driver.findElements(By.cssSelector("a.next")).isEmpty());
 
         return prdQuantity;
     }
@@ -121,26 +105,14 @@ public class CartPage extends PageBase {
     @Step("Get product quantity from all pages")
     public double getPrdSubtotalFromAllPages() {
         double prdSubtotal = 0;
+        getPageNavigation().goToFirstPage();
 
-        //Go back to the firs page
-        while (true) {
-            if (!driver.findElements(By.className("previous")).isEmpty()) {
-                driver.findElement(By.className("previous")).click();
-            } else {
-                break;
-            }
-        }
-
-        while (true) {
+        do {
             prdSubtotal += getPrdSubtotalFromPage();
+            getPageNavigation().goToNextPage();
 
-            //Check if there's a next page and navigate to it
-            if (!driver.findElements(By.cssSelector("a.next")).isEmpty()) {
-                driver.findElement(By.cssSelector("a.next")).click();
-            } else {
-                break; //No more pages
-            }
-        }
+            // Check if there's a next page
+        } while (!driver.findElements(By.cssSelector("a.next")).isEmpty());
         return prdSubtotal;
     }
 

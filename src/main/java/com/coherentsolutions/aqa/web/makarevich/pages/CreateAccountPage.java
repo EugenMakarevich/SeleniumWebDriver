@@ -1,5 +1,6 @@
 package com.coherentsolutions.aqa.web.makarevich.pages;
 
+import com.coherentsolutions.aqa.web.makarevich.model.User;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,15 +26,20 @@ public class CreateAccountPage extends PageBase {
         super(driver);
     }
 
-    @Step("Fill in requered fields and submit account")
-    public MyAccountPage fillInRequiredFieldsAndSubmit(String firstName, String lastName, String email, String password) {
-        firstNameField.sendKeys(firstName);
-        lastNameField.sendKeys(lastName);
-        emailAddressField.sendKeys(email);
-        passwordField.sendKeys(password);
-        passwordConfirmationField.sendKeys(password);
+    @Step("Fill in required fields and submit account")
+    public MyAccountPage registerAccount(User user) {
+        fillRegistrationFields(user);
         createAccountButton.click();
         return new MyAccountPage(driver);
+    }
+
+    @Step("Fill in required fields")
+    private void fillRegistrationFields(User user) {
+        firstNameField.sendKeys(user.getFirstName());
+        lastNameField.sendKeys(user.getLastName());
+        emailAddressField.sendKeys(user.getEmail());
+        passwordField.sendKeys(user.getPassword());
+        passwordConfirmationField.sendKeys(user.getPassword());
     }
 
     @Step("Get contact information")

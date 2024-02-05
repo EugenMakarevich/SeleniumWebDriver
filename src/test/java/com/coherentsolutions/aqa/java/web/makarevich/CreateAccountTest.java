@@ -1,33 +1,24 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
+import com.coherentsolutions.aqa.web.makarevich.model.User;
+import com.coherentsolutions.aqa.web.makarevich.services.UserService;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class CreateAccountTest extends TestBase {
-    @DataProvider(name = "createAccountData")
-    public static Object[][] createAccountData() {
-        String timestamp = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
+    @Test(groups = "Online Store")
+    public void testCreateAccount() {
+        User user = new UserService().createFakeUser();
 
-        return new Object[][]{
-                {"AutoFirstName" + timestamp, "AutoLastName" + timestamp, "autouser" + timestamp + "@gmail.com", "Password123"}
-        };
-    }
-
-    @Test(dataProvider = "createAccountData", groups = "Online Store")
-    public void testCreateAccount(String firstName, String lastName, String email, String password) {
         mainPage
                 .open()
                 .getHeader().clickCreateAccountLink()
-                .fillInRequiredFieldsAndSubmit(firstName, lastName, email, password);
+                .registerAccount(user);
         Assert.assertEquals(driver().getTitle(), "My Account", "Title of the page is different from expected");
 
         String contactInformation = createAccountPage.getContactInformation();
         String firstLastName = createAccountPage.getFirstLastName(contactInformation);
-        String expectedFirstLastName = String.format("%s %s", firstName, lastName);
+        String expectedFirstLastName = String.format("%s %s", user.getFirstName(), user.getLastName());
         Assert.assertEquals(firstLastName, expectedFirstLastName, "First and Last Name is different from expected");
     }
 }

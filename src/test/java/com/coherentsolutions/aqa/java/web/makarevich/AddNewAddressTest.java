@@ -17,9 +17,7 @@ public class AddNewAddressTest extends TestBase {
 
         Address address = addressService.createAddress();
 
-        myAccountPage
-                .openAddNewAddressPage()
-                .addNewAddress(address);
+        myAccountPage.openAddNewAddressPage().addNewAddress(address);
         Assert.assertEquals(driver().getTitle(), "Address Book", "Title of the page is different from expected");
 
         List<Address> addresses = addressService.getAddressDataFromAllPages();

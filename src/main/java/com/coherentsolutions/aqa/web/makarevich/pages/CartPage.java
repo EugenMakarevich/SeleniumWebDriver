@@ -43,8 +43,12 @@ public class CartPage extends PageBase {
         Product product = new Product();
         WebElement productName = productItem.findElement(By.cssSelector(".product-item-name a"));
         WebElement productPrice = productItem.findElement(By.cssSelector(".item-info .price .price-excluding-tax"));
+        WebElement productQty = productItem.findElement(By.cssSelector(".input-text.qty"));
+        WebElement productSubtotal = productItem.findElement(By.cssSelector(".subtotal .cart-price .price"));
         product.setName(productName.getText());
         product.setPrice(productPrice.getText());
+        product.setQty(Integer.parseInt(productQty.getAttribute("value")));
+        product.setSubtotal(extractDouble(productSubtotal.getText()));
         return product;
     }
 
@@ -67,61 +71,20 @@ public class CartPage extends PageBase {
         return products;
     }
 
-    @Step("Get product quantity")
-    private int getPrdQuantity() {
-        int initialQuantity = 0;
-        for (WebElement productQuantity : productQuantities) {
-            int quantity = Integer.parseInt(productQuantity.getAttribute("value"));
-            initialQuantity += quantity;
+    public double getAllSubtotals(List<Product> products) {
+        double cartItemSubtotals = 0;
+        for (Product product : products) {
+            cartItemSubtotals += product.getSubtotal();
         }
-        return initialQuantity;
-    }
-
-    @Step("Get product quantity from all pages")
-    public int getPrdQuantityFromAllPages() {
-        int prdQuantity = 0;
-        getPageNavigation().goToFirstPage();
-
-        do {
-            prdQuantity += getPrdQuantity();
-            getPageNavigation().goToNextPage();
-
-            // Check if there's a next page
-        } while (!driver.findElements(By.cssSelector("a.next")).isEmpty());
-
-        return prdQuantity;
-    }
-
-    @Step("Get product quantity from page")
-    private double getPrdSubtotalFromPage() {
-        double prdSubtotal = 0;
-        for (WebElement productSubtotal : productSubtotals) {
-            double subtotal = extractDouble(productSubtotal.getText());
-            prdSubtotal += subtotal;
-        }
-        return prdSubtotal;
-    }
-
-    @Step("Get product quantity from all pages")
-    public double getPrdSubtotalFromAllPages() {
-        double prdSubtotal = 0;
-        getPageNavigation().goToFirstPage();
-
-        do {
-            prdSubtotal += getPrdSubtotalFromPage();
-            getPageNavigation().goToNextPage();
-
-            // Check if there's a next page
-        } while (!driver.findElements(By.cssSelector("a.next")).isEmpty());
-        return prdSubtotal;
+        return cartItemSubtotals;
     }
 
     @Step("Verify the cart subtotal is valid")
-    public boolean isCartSubtotalValid() {
+    public boolean isCartSubtotalValid(List<Product> products) {
         WebDriverWait wait = new WebDriverWait(driver, MEDIUM_TIMEOUT, Duration.ofMillis(200));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".sub .price")));
         double expectedSubtotal = extractDouble(cartSubtotal.getText());
-        double actualSubtotal = getPrdSubtotalFromAllPages();
+        double actualSubtotal = getAllSubtotals(products);
         return actualSubtotal == expectedSubtotal;
     }
 }

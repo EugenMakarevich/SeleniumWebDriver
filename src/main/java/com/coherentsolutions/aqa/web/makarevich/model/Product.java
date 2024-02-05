@@ -1,13 +1,19 @@
 package com.coherentsolutions.aqa.web.makarevich.model;
 
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     private String name;
     private String price;
+    private int qty;
+    private double subtotal;
 
     @Override
     public boolean equals(Object o) {

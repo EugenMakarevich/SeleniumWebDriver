@@ -1,7 +1,6 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
 import com.coherentsolutions.aqa.web.makarevich.model.Product;
-import com.coherentsolutions.aqa.web.makarevich.services.ProductService;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -16,16 +15,14 @@ public class AddToWishlistTest extends TestBase {
         loginPage.login(MAGENTO_EMAIL, MAGENTO_PASSWORD);
         Assert.assertEquals(driver().getTitle(), "My Account", "Title of the page is different from expected");
 
-        myAccountPage
-                .openWomenTopJacketsPage()
-                .goToRandomProductPage();
+        myAccountPage.openWomenTopJacketsPage().goToRandomProductPage();
         Product product = productPage.getProductDataFromPage();
-        Assert.assertNotNull(product, "The Product object is NULL");
+        Assert.assertNotNull(product, "Product object is NULL");
 
-        productPage.clickOnAddProductToWishListLink();
+        productPage.addProductToWishList();
         Assert.assertFalse(myWhishListPage.isWhishlistEmpty(), "Wish list is empty");
 
-        List<Product> wishListItems = new ProductService(driver()).getProductDataFromAllPages();
+        List<Product> wishListItems = productService.getProductDataFromAllPages();
         Assert.assertTrue(wishListItems.contains(product), "Wish List does not contain the product");
     }
 }

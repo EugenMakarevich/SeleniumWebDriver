@@ -36,7 +36,7 @@ public class ProductPage extends PageBase {
     }
 
     @Step("CLick on Add Product To WishList button")
-    public MyWhishListPage clickOnAddProductToWishListLink() {
+    public MyWhishListPage addProductToWishList() {
         addProductToWishListLink.click();
         return new MyWhishListPage(driver);
     }

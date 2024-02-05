@@ -17,6 +17,6 @@ public class TestConstants {
     public static final int DOWNLOAD_PERCENT = 50;
     public static final String SCREENSHOT_FOLDER_PATH = "artifacts/screenshots/";
     public static final String SCREENSHOT_PNG_NAME = "screenshot.png";
-    public static final String MAGENTO_EMAIL = "eugendallas@gmail.com";
+    public static final String MAGENTO_EMAIL = "testemail@test.email";// eugendallas@gmail.com
     public static final String MAGENTO_PASSWORD = "Password123";
 }

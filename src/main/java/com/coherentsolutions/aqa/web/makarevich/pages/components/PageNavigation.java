@@ -4,9 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class PageNavigation extends ComponentBase {
+    //TODO: Page Factory
     public PageNavigation(WebDriver driver) {
         super(driver);
     }
+
 
     public void goToPreviousPage() {
         if (!driver.findElements(By.className("previous")).isEmpty()) {

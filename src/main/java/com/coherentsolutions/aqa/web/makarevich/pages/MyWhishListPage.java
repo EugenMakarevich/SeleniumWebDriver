@@ -8,13 +8,13 @@ import java.util.List;
 
 public class MyWhishListPage extends PageBase {
     @FindBy(css = ".wishlist .product-items .product-item")
-    private List<WebElement> whishlistItem;
+    private List<WebElement> whishlistItems;
 
     public MyWhishListPage(WebDriver driver) {
         super(driver);
     }
 
     public boolean isWhishlistEmpty() {
-        return whishlistItem.isEmpty();
+        return whishlistItems.isEmpty();
     }
 }

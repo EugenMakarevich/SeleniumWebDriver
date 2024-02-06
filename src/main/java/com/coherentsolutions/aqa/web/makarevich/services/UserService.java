@@ -4,7 +4,10 @@ import com.coherentsolutions.aqa.web.makarevich.model.User;
 import com.github.javafaker.Faker;
 
 public class UserService {
-    public User createUser() {
+    private UserService() {
+    }
+
+    public static User createUser() {
         User user = new User();
         Faker faker = new Faker();
         user.setFirstName(faker.name().firstName());

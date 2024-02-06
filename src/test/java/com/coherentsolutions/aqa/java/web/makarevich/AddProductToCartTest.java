@@ -18,7 +18,7 @@ public class AddProductToCartTest extends TestBase {
         Assert.assertEquals(driver().getTitle(), "My Account", "Title of the page is different from expected");
 
         myAccountPage.openWomenTopJacketsPage();
-        List<Product> productsAdded = productItemPage.addProductToCard(prodNum);
+        List<Product> productsAdded = productItemPage.addProductsToCard(prodNum);
 
         productPage.getHeader().goToCart();
         List<Product> productsInCart = cartPage.getProductsFromAllPages();

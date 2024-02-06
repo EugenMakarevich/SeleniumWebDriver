@@ -1,13 +1,14 @@
 package com.coherentsolutions.aqa.java.web.makarevich;
 
 import com.coherentsolutions.aqa.web.makarevich.model.User;
+import com.coherentsolutions.aqa.web.makarevich.services.UserService;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CreateAccountTest extends TestBase {
     @Test(groups = "Online Store")
     public void testCreateAccount() {
-        User user = userService.createUser();
+        User user = UserService.createUser();
 
         mainPage
                 .open()

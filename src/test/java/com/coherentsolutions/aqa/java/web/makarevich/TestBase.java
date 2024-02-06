@@ -5,7 +5,6 @@ import com.coherentsolutions.aqa.web.makarevich.listeners.TestListener;
 import com.coherentsolutions.aqa.web.makarevich.pages.*;
 import com.coherentsolutions.aqa.web.makarevich.services.AddressService;
 import com.coherentsolutions.aqa.web.makarevich.services.ProductService;
-import com.coherentsolutions.aqa.web.makarevich.services.UserService;
 import com.coherentsolutions.aqa.web.makarevich.utils.WebDriverUtils;
 import com.coherentsolutions.aqa.web.makarevich.webdriver.GridWebDriverStrategy;
 import com.coherentsolutions.aqa.web.makarevich.webdriver.LocalWebDriverStrategy;
@@ -37,7 +36,6 @@ public class TestBase {
     LoginPage loginPage;
     AddressService addressService;
     ProductService productService;
-    UserService userService;
 
     protected static void setWebDriverStrategy() {
         switch (Configuration.DRIVER_STRATEGY.toUpperCase()) {
@@ -72,7 +70,6 @@ public class TestBase {
         loginPage = new LoginPage(driver);
         addressService = new AddressService(driver);
         productService = new ProductService(driver);
-        userService = new UserService();
     }
 
     @AfterClass(alwaysRun = true)

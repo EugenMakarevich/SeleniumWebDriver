@@ -28,11 +28,11 @@ public class ProductPage extends PageBase {
     private WebElement addProductToWishListLink;
     @FindBy(id = "product-addtocart-button")
     private WebElement addToCartBtn;
-    WebDriverWait wait;
+    private WebDriverWait wait;
 
     public ProductPage(WebDriver driver) {
         super(driver);
-        wait = new WebDriverWait(driver, MEDIUM_TIMEOUT, Duration.ofMillis(200));
+        wait = new WebDriverWait(driver, MEDIUM_TIMEOUT, Duration.ofMillis(200)); //Put to the PageBase constructor (ctor)
     }
 
     @Step("CLick on Add Product To WishList button")

@@ -15,6 +15,7 @@ import java.util.List;
 import static com.coherentsolutions.aqa.web.makarevich.constants.TimeOutConstants.MEDIUM_TIMEOUT;
 
 public class ProductService {
+    //TODO: delete products
     private List<Product> products = new ArrayList<>();
 
     protected WebDriver driver;
@@ -25,6 +26,7 @@ public class ProductService {
     }
 
     public List<Product> getProductDataFromAllPages() {
+        //TODO: Time broker
         while (true) {
             getProductsFromPage();
 
@@ -38,6 +40,7 @@ public class ProductService {
         return products;
     }
 
+    //TODO: Put all this to the page
     public void getProductsFromPage() {
         List<WebElement> productItems = getProductItems();
 

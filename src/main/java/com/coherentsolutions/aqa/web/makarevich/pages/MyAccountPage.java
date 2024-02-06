@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import static com.coherentsolutions.aqa.web.makarevich.constants.UrlConstants.*;
 
 public class MyAccountPage extends MainPage {
-    MagentoHeader header;
+    private MagentoHeader header;
 
     public MyAccountPage(WebDriver driver) {
         super(driver);

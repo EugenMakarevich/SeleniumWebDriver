@@ -19,7 +19,6 @@ public class AddressService {
     private List<WebElement> rows;
     @FindBy(css = "a.next")
     private WebElement nextButton;
-    private List<Address> addresses = new ArrayList<>();
     protected WebDriver driver;
 
     public AddressService(WebDriver driver) {
@@ -41,7 +40,8 @@ public class AddressService {
         return address;
     }
 
-    public void getAddressDataFromPage() {
+    public List<Address> getAddressDataFromPage() {
+        List<Address> addresses = new ArrayList<>();
         for (WebElement row : rows) {
             Address address = new Address();
 
@@ -58,11 +58,13 @@ public class AddressService {
 
             addresses.add(address);
         }
+        return addresses;
     }
 
     public List<Address> getAddressDataFromAllPages() {
+        List<Address> addresses = new ArrayList<>();
         while (true) {
-            getAddressDataFromPage();
+            addresses.addAll(getAddressDataFromPage());
 
             //Check if there's a next page and navigate to it
             if (!driver.findElements(By.cssSelector("a.next")).isEmpty()) {

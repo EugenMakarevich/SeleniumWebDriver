@@ -41,7 +41,7 @@ public class AddNewAddressPage extends PageBase {
     }
 
     @Step("Fill in all required fields and Save new address")
-    public void fillAddressFields(Address address) {
+    private void fillAddressFields(Address address) {
         firstNameField.clear();
         firstNameField.sendKeys(address.getFirstName());
         lastNameField.clear();

@@ -21,7 +21,6 @@ public class LocalWebDriverStrategy implements WebDriverStrategy {
         }
 
         driver.manage().window().maximize();
-        //driver.manage().timeouts().implicitlyWait(SHORT_TIMEOUT);
         WebDriverUtils.setWebDriver(driver);
     }
 }

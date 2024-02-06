@@ -33,15 +33,6 @@ public class CreateAccountPage extends PageBase {
         return new MyAccountPage(driver);
     }
 
-    @Step("Fill in required fields")
-    private void fillRegistrationFields(User user) {
-        firstNameField.sendKeys(user.getFirstName());
-        lastNameField.sendKeys(user.getLastName());
-        emailAddressField.sendKeys(user.getEmail());
-        passwordField.sendKeys(user.getPassword());
-        passwordConfirmationField.sendKeys(user.getPassword());
-    }
-
     @Step("Get contact information")
     public String getContactInformation() {
         return contactInformationText.getText();
@@ -51,5 +42,14 @@ public class CreateAccountPage extends PageBase {
     public String getFirstLastName(String contactInformation) {
         String[] lines = contactInformation.split("\n");
         return lines[0];
+    }
+
+    @Step("Fill in required fields")
+    private void fillRegistrationFields(User user) {
+        firstNameField.sendKeys(user.getFirstName());
+        lastNameField.sendKeys(user.getLastName());
+        emailAddressField.sendKeys(user.getEmail());
+        passwordField.sendKeys(user.getPassword());
+        passwordConfirmationField.sendKeys(user.getPassword());
     }
 }

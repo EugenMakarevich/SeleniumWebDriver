@@ -33,31 +33,8 @@ public class CartPage extends PageBase {
     private WebElement cartOrderTotal;
     private List<Product> products = new ArrayList<>();
 
-
     public CartPage(WebDriver driver) {
         super(driver);
-    }
-
-    @Step("Get product from the cart")
-    private Product getProduct(WebElement productItem) {
-        Product product = new Product();
-        WebElement productName = productItem.findElement(By.cssSelector(".product-item-name a"));
-        WebElement productPrice = productItem.findElement(By.cssSelector(".item-info .price .price-excluding-tax"));
-        WebElement productQty = productItem.findElement(By.cssSelector(".input-text.qty"));
-        WebElement productSubtotal = productItem.findElement(By.cssSelector(".subtotal .cart-price .price"));
-        product.setName(productName.getText());
-        product.setPrice(productPrice.getText());
-        product.setQty(Integer.parseInt(productQty.getAttribute("value")));
-        product.setSubtotal(extractDouble(productSubtotal.getText()));
-        return product;
-    }
-
-    @Step("Get products from the cart page")
-    private List<Product> getProductsFromPage() {
-        for (WebElement productItem : productList) {
-            products.add(getProduct(productItem));
-        }
-        return products;
     }
 
     @Step("Get products from all cart pages")
@@ -86,5 +63,27 @@ public class CartPage extends PageBase {
         double expectedSubtotal = extractDouble(cartSubtotal.getText());
         double actualSubtotal = getAllSubtotals(products);
         return actualSubtotal == expectedSubtotal;
+    }
+
+    @Step("Get product from the cart")
+    private Product getProduct(WebElement productItem) {
+        Product product = new Product();
+        WebElement productName = productItem.findElement(By.cssSelector(".product-item-name a"));
+        WebElement productPrice = productItem.findElement(By.cssSelector(".item-info .price .price-excluding-tax"));
+        WebElement productQty = productItem.findElement(By.cssSelector(".input-text.qty"));
+        WebElement productSubtotal = productItem.findElement(By.cssSelector(".subtotal .cart-price .price"));
+        product.setName(productName.getText());
+        product.setPrice(productPrice.getText());
+        product.setQty(Integer.parseInt(productQty.getAttribute("value")));
+        product.setSubtotal(extractDouble(productSubtotal.getText()));
+        return product;
+    }
+
+    @Step("Get products from the cart page")
+    private List<Product> getProductsFromPage() {
+        for (WebElement productItem : productList) {
+            products.add(getProduct(productItem));
+        }
+        return products;
     }
 }

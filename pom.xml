@@ -20,9 +20,9 @@
         <suiteName>all</suiteName>
 
         <!--environment properties-->
-        <driver.strategy>local</driver.strategy><!--local,grid,saurcelabs-->
+        <driver.strategy>saurcelabs</driver.strategy><!--local,grid,saurcelabs-->
         <driver.grid.hub.url>http://localhost:4444/wd/hub</driver.grid.hub.url>
-        <driver.browser>chrome</driver.browser>
+        <driver.browser>firefox</driver.browser>
         <driver.browser.version>latest</driver.browser.version>
         <driver.platform>Windows 10</driver.platform>
     </properties>

@@ -36,7 +36,7 @@ public class ProductItemPage extends PageBase {
     }
 
     @Step("Add specified number of products ({0}) to the cart")
-    public List<Product> addProductToCard(int prodNum) {
+    public List<Product> addProductsToCard(int prodNum) {
         List<Product> products = new ArrayList<>();
         for (int i = 0; i < prodNum; i++) {
             WebElement productLink = getRandomProductLinkFromPage();

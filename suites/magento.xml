@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Magento Online Store Tests">
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+    <test name="Magento Online Store Tests">
+        <groups>
+            <run>
+                <include name="Online Store"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.coherentsolutions.aqa.java.web.makarevich.*"/>
+        </packages>
+    </test>
+</suite>

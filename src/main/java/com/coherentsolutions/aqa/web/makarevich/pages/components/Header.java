@@ -1,43 +1,42 @@
 package com.coherentsolutions.aqa.web.makarevich.pages.components;
 
+import com.coherentsolutions.aqa.web.makarevich.pages.CartPage;
+import com.coherentsolutions.aqa.web.makarevich.pages.CreateAccountPage;
+import com.coherentsolutions.aqa.web.makarevich.pages.LoginPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.coherentsolutions.aqa.web.makarevich.constants.UrlConstants.CART_PAGE_URL;
+
 public class Header extends ComponentBase {
-    @FindBy(css = "a.user-account .user-pic .user-pic__image")
-    private WebElement accountImg;
-    @FindBy(css = ".menu__group .menu__list-item:last-child")
-    private WebElement logoutLink;
-    @FindBy(css = "a.user-account_left-name > span.user-account__name")
-    private WebElement accountName;
+    @FindBy(css = "div.header ul.header li:last-of-type")
+    private WebElement createAccountLink;
+    @FindBy(css = "header span.logged-in")
+    private WebElement greetWelcomeText;
+    @FindBy(css = "div.header li.authorization-link")
+    private WebElement signInLink;
 
     public Header(WebDriver driver) {
         super(driver);
     }
 
-    public boolean isAccountNameDisplayed() {
-        return accountName.isDisplayed();
+    @Step("Click on Create an Account link")
+    public CreateAccountPage clickCreateAccountLink() {
+        createAccountLink.click();
+        return new CreateAccountPage(driver);
     }
 
-    public boolean isAccountImgDisplayed() {
-        return accountImg.isDisplayed();
+    @Step("Click Sign In link")
+    public LoginPage clickSignInLink() {
+        signInLink.click();
+        return new LoginPage(driver);
     }
 
-    public String getAccountName() {
-        return accountName.getText();
-    }
-
-    @Step("Click on user's profile image")
-    public Header clickAccountImg() {
-        accountImg.click();
-        return this;
-    }
-
-    @Step("Click on logout link")
-    public Header clickLogoutLink() {
-        logoutLink.click();
-        return this;
+    @Step("Go to Cart")
+    public CartPage goToCart() {
+        driver.get(CART_PAGE_URL);
+        return new CartPage(driver);
     }
 }

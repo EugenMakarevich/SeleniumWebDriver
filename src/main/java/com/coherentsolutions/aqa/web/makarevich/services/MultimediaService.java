@@ -9,11 +9,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-import static com.coherentsolutions.aqa.web.makarevich.constants.GlobalConstants.SCREENSHOT_FAILURE;
+import static com.coherentsolutions.aqa.web.makarevich.constants.TestConstants.SCREENSHOT_FAILURE;
 import static com.coherentsolutions.aqa.web.makarevich.utils.ScreenshotUtil.takeScreenshotAsFile;
 
 @Slf4j
 public class MultimediaService {
+    //TODO: DO I need a service here??? Is it better to put it in ScreenshotUtils or even better rename screenshot utils as MultimediaUtils?
     public static void attachScreenshot() {
         try {
             File screenshot = takeScreenshotAsFile();

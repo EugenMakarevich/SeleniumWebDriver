@@ -22,9 +22,6 @@ import org.testng.annotations.Listeners;
 @Listeners({io.qameta.allure.testng.AllureTestNg.class, TestListener.class})
 public class TestBase {
     private WebDriver driver;
-    Yandex360MailPage yandex360MailPage;
-    YandexMailLoginPage yandexMailLoginPage;
-    YandexMailInboxPage yandexMailInboxPage;
     MainPage mainPage;
     CreateAccountPage createAccountPage;
     MyAccountPage myAccountPage;
@@ -56,9 +53,6 @@ public class TestBase {
     protected void setUp() {
         setWebDriverStrategy();
         driver = WebDriverUtils.getDriver();
-        yandex360MailPage = new Yandex360MailPage(driver);
-        yandexMailLoginPage = new YandexMailLoginPage(driver);
-        yandexMailInboxPage = new YandexMailInboxPage(driver);
         mainPage = new MainPage(driver);
         createAccountPage = new CreateAccountPage(driver);
         myAccountPage = new MyAccountPage(driver);
@@ -80,10 +74,5 @@ public class TestBase {
                 "OS: " + cap.getPlatformName().toString()
         );
         WebDriverUtils.closeDriver();
-    }
-
-    //For old test cases
-    protected WebDriver driver() {
-        return driver;
     }
 }

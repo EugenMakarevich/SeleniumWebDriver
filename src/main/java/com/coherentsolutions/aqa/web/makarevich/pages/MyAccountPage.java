@@ -1,17 +1,17 @@
 package com.coherentsolutions.aqa.web.makarevich.pages;
 
-import com.coherentsolutions.aqa.web.makarevich.pages.components.MagentoHeader;
+import com.coherentsolutions.aqa.web.makarevich.pages.components.Header;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 
 import static com.coherentsolutions.aqa.web.makarevich.constants.UrlConstants.*;
 
 public class MyAccountPage extends MainPage {
-    private MagentoHeader header;
+    private Header header;
 
     public MyAccountPage(WebDriver driver) {
         super(driver);
-        header = new MagentoHeader(driver);
+        header = new Header(driver);
     }
 
     @Step("Open Add New Address page")

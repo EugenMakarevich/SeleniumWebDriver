@@ -21,7 +21,7 @@ import org.testng.annotations.Listeners;
 @Slf4j
 @Listeners({io.qameta.allure.testng.AllureTestNg.class, TestListener.class})
 public class TestBase {
-    private WebDriver driver;
+    protected WebDriver driver;
     MainPage mainPage;
     CreateAccountPage createAccountPage;
     MyAccountPage myAccountPage;

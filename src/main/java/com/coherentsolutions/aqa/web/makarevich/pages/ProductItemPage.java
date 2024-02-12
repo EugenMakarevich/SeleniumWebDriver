@@ -1,7 +1,6 @@
 package com.coherentsolutions.aqa.web.makarevich.pages;
 
 import com.coherentsolutions.aqa.web.makarevich.model.Product;
-import com.coherentsolutions.aqa.web.makarevich.services.ProductService;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
@@ -41,10 +40,8 @@ public class ProductItemPage extends PageBase {
         for (int i = 0; i < prodNum; i++) {
             WebElement productLink = getRandomProductLinkFromPage();
             productLink.click();
-            //TODO: Should I add the page to PageBase to prevent initialization here?
             ProductPage productPage = new ProductPage(driver);
-            ProductService productService = new ProductService(driver);
-            products.add(productService.getProduct());
+            products.add(productPage.getProductDataFromPage());
             productPage.addProductToCart();
             getBreadcrumbs().goToCategory();
             productLinks.remove(productLink);

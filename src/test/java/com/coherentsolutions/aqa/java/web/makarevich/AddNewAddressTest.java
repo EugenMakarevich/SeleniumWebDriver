@@ -13,12 +13,12 @@ public class AddNewAddressTest extends TestBase {
     @Test(groups = "Online Store")
     public void testAddNewAddress() {
         loginPage.login(MAGENTO_EMAIL, MAGENTO_PASSWORD);
-        Assert.assertEquals(driver().getTitle(), "My Account", "Title of the page is different from expected");
+        Assert.assertEquals(driver.getTitle(), "My Account", "Title of the page is different from expected");
 
         Address address = addressService.createAddress();
 
         myAccountPage.openAddNewAddressPage().addNewAddress(address);
-        Assert.assertEquals(driver().getTitle(), "Address Book", "Title of the page is different from expected");
+        Assert.assertEquals(driver.getTitle(), "Address Book", "Title of the page is different from expected");
 
         List<Address> addresses = addressService.getAddressDataFromAllPages();
         Assert.assertFalse(addresses.isEmpty(), "Address list is empty");

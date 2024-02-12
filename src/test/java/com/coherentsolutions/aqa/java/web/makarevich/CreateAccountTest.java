@@ -14,7 +14,7 @@ public class CreateAccountTest extends TestBase {
                 .open()
                 .getHeader().clickCreateAccountLink()
                 .registerAccount(user);
-        Assert.assertEquals(driver().getTitle(), "My Account", "Title of the page is different from expected");
+        Assert.assertEquals(driver.getTitle(), "My Account", "Title of the page is different from expected");
 
         String contactInformation = createAccountPage.getContactInformation();
         String firstLastName = createAccountPage.getFirstLastName(contactInformation);

@@ -56,6 +56,17 @@ public class ProductPage extends PageBase {
         clickOnAddToCartBtn();
     }
 
+    /*public Product getProduct() {
+        WebDriverWait wait = new WebDriverWait(driver, MEDIUM_TIMEOUT, Duration.ofMillis(200));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".product-info-main .price")));
+        Product product = new Product();
+        WebElement productName = driver.findElement(By.cssSelector(".product-info-main h1"));
+        WebElement productPrice = driver.findElement(By.cssSelector(".product-info-main .price"));
+        product.setName(productName.getText());
+        product.setPrice(productPrice.getText());
+        return product;
+    }*/
+
     @Step("Get product name")
     private String getProductName() {
         return productName.getText();

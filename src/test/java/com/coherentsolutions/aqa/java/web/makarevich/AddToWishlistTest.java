@@ -13,7 +13,7 @@ public class AddToWishlistTest extends TestBase {
     @Test(groups = "Online Store")
     public void testAddToWishlist() {
         loginPage.login(MAGENTO_EMAIL, MAGENTO_PASSWORD);
-        Assert.assertEquals(driver().getTitle(), "My Account", "Title of the page is different from expected");
+        Assert.assertEquals(driver.getTitle(), "My Account", "Title of the page is different from expected");
 
         myAccountPage.openWomenTopJacketsPage().goToRandomProductPage();
         Product product = productPage.getProductDataFromPage();
@@ -22,7 +22,7 @@ public class AddToWishlistTest extends TestBase {
         productPage.addProductToWishList();
         Assert.assertFalse(myWhishListPage.isWhishlistEmpty(), "Wish list is empty");
 
-        List<Product> wishListItems = productService.getProductDataFromAllPages();
+        List<Product> wishListItems = myWhishListPage.getProductDataFromAllPages();
         Assert.assertTrue(wishListItems.contains(product), "Wish List does not contain the product");
     }
 }

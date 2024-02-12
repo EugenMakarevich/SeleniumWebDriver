@@ -10,6 +10,6 @@ public class LoginTest extends TestBase {
     @Test(groups = "Online Store")
     public void testLogin() {
         loginPage.login(MAGENTO_EMAIL, MAGENTO_PASSWORD);
-        Assert.assertEquals(driver().getTitle(), "My Account", "Title of the page is different from expected");
+        Assert.assertEquals(driver.getTitle(), "My Account", "Title of the page is different from expected");
     }
 }
